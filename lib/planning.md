@@ -1,7 +1,7 @@
 # Date & Thyme
 
 ## Project Summary
-A full-stack application that allows users to login, add food items and their expiration dates to their virtual fridge, and get notficiations when those food items are about to expire.  It will be built with a React frontend with Material UI components, a Django backend and authentication.  The front and backends will be deployed on Netlify and Heroku respectfully.
+A full-stack application that allows users to login, add food items and their expiration dates to their virtual fridge, and get notifications when those food items are about to expire.  It will be built with a React frontend with Material UI components, a Django backend and authentication.  The front and backends will be deployed on Netlify and Heroku respectfully.
 
 ## Trello
 [Found here](https://trello.com/b/56bhwQbq/project-4-date-and-thyme)
