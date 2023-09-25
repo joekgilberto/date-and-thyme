@@ -3,9 +3,16 @@ import axios from 'axios';
 
 import { useState, useEffect } from 'react';
 
+const initState = {
+  name: "",
+  expiration_date: "",
+  quantity: 1
+}
+
 export default function App() {
 
   const [foodItems, setFoodItems] = useState(null)
+  const [formData, setFormData] = useState(initState);
 
   async function handleFoodItemsRequest() {
     axios   //Axios to send and receive HTTP requests
@@ -14,8 +21,20 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  function handleChange(e) {
+    const updatedData = { ...formData, [e.target.name]: e.target.value }
+    setFormData(updatedData)
+  }
+
+  async function handleSubmit(e){
+    e.preventDefault()
+    // if new post to submit
+    axios
+      .post("http://localhost:8000/api/food-items/", formData)
+      .then((res) => handleFoodItemsRequest());
+  };
+
   async function handleDelete(item) {
-    alert("delete" + JSON.stringify(item));
     axios
       .delete(`http://localhost:8000/api/food-items/${item.id}/`)
       .then((res) => handleFoodItemsRequest());
@@ -24,7 +43,7 @@ export default function App() {
 
   useEffect(() => {
     handleFoodItemsRequest()
-    console.log(foodItems) 
+    console.log(foodItems)
   }, [])
 
   return (
@@ -40,6 +59,18 @@ export default function App() {
         </div>
         )
       }) : null}
+      <form className="new" onSubmit={handleSubmit}>
+            <label>Name
+              <input type="text" name="name" onChange={handleChange} required />
+            </label>
+            <label>Expiration Date
+              <input type="date" name="expiration_date" onChange={handleChange} required />
+            </label>
+            <label>Quantity
+              <input type="number" name="quantity" onChange={handleChange} min="1" defaultValue={1} required />
+            </label>
+            <button type="submit">Add</button>
+          </form>
     </div>
   );
 }
