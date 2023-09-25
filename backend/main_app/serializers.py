@@ -10,7 +10,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 	# create a meta class
 	class Meta:
 		model = FoodItem
-		fields = ('name','purchase_date','expiration_date','quantity')
+		fields = ('id','name','purchase_date','expiration_date','quantity')
 
 # create a serializer class
 class NotificationSerializer(serializers.ModelSerializer):
@@ -18,4 +18,4 @@ class NotificationSerializer(serializers.ModelSerializer):
 	# create a meta class
 	class Meta:
 		model = Notification
-		fields = ('food_item','days_left','read','generation_date')
+		fields = ('id','food_item','days_left','read','generation_date')
