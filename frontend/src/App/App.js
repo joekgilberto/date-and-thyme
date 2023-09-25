@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import { useState, useEffect } from 'react';
 
+import TestEdit from '../components/TestEdit';
+
 const initState = {
   name: "",
   expiration_date: "",
@@ -26,7 +28,7 @@ export default function App() {
     setFormData(updatedData)
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault()
     // if new post to submit
     axios
@@ -55,22 +57,23 @@ export default function App() {
           <p>{foodItem.purchase_date}</p>
           <p>{foodItem.expiration_date}</p>
           <p onClick={() => handleDelete(foodItem)}>X</p>
+          <TestEdit handleFoodItemsRequest={handleFoodItemsRequest} foodItem={foodItem} />
           <hr />
         </div>
         )
       }) : null}
       <form className="new" onSubmit={handleSubmit}>
-            <label>Name
-              <input type="text" name="name" onChange={handleChange} required />
-            </label>
-            <label>Expiration Date
-              <input type="date" name="expiration_date" onChange={handleChange} required />
-            </label>
-            <label>Quantity
-              <input type="number" name="quantity" onChange={handleChange} min="1" defaultValue={1} required />
-            </label>
-            <button type="submit">Add</button>
-          </form>
+        <label>Name
+          <input type="text" name="name" onChange={handleChange} required />
+        </label>
+        <label>Expiration Date
+          <input type="date" name="expiration_date" onChange={handleChange} required />
+        </label>
+        <label>Quantity
+          <input type="number" name="quantity" onChange={handleChange} min="1" defaultValue={1} required />
+        </label>
+        <button type="submit">Add</button>
+      </form>
     </div>
   );
 }
