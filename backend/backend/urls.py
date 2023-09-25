@@ -31,6 +31,7 @@ router = routers.DefaultRouter()
 
 # register the router
 router.register(r'food-items',views.FoodItemView, 'food-item')
+router.register(r'notifications',views.NotificationView, 'notification')
 # router.register(r'notifications',views.NotificationView, 'notification')
 
 urlpatterns = [
@@ -40,6 +41,6 @@ urlpatterns = [
 	# when you visit the localhost:8000/api
 	# you should be routed to the django Rest framework
 	path('api/', include(router.urls)),
-    path('api/notifications/', views.NotificationView.as_view(), name="notifications"),
+    path('api/query/', views.NotificationQueryView.as_view(), name="notifications"),
 ]
 

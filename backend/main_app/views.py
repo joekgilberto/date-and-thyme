@@ -30,7 +30,12 @@ class FoodItemView(viewsets.ModelViewSet):
 # 	# with the Notification list objects
 # 	queryset = Notification.objects.all()
 
-class NotificationView(generics.ListAPIView):
+class NotificationView(viewsets.ModelViewSet):
+    serializer_class = NotificationSerializer
+    queryset = Notification.objects.all()
+
+
+class NotificationQueryView(generics.ListAPIView):
     serializer_class = NotificationSerializer
 
     def get_queryset(self):
