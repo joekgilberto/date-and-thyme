@@ -61,12 +61,21 @@ A full-stack application that allows users to login, add food items and their ex
 
 
 ## ERD
+### MVP
 ![ERD](./assets/planning/erd.png)
+
+### Icebox
+![Icebox ERD](./assets/planning/erd-icebox.png)
+
+## Component Tree
+### MVP
+![Component Tree](./assets/planning/components.png)
+
+### Icebox
+![Component Tree](./assets/planning/components-icebox.png)
 
 ## User Stories
 ### MVP
-- As a user, I want to be able to sign up for the application to keep personalized data.
-- As a user, I want to be able to login to access personalized data.
 - As a user, I want to be able to access a fridge list with all of my food items and their expiration dates displayed.
 - As a user, I want to be able to add food items and their expiration dates to the fridge.
 - As a user, I want to be able to delete a food item if I eat or discard it.
@@ -79,4 +88,6 @@ A full-stack application that allows users to login, add food items and their ex
 ### Icebox
 - As a user, I want to be able to record how much food I discard- as opposed to delete- to keep track of how much food I waste.
 - As a user, I want to be able to record how much food I eat- as opposed to delete or discard- to keep track of how much food I don't waste.
+- As a user, I want to be able to sign up for the application to keep personalized data.
+- As a user, I want to be able to login to access personalized data.
 - As a user, when I open a food item's details page, I want OpenAI's API to suggest recipes.
