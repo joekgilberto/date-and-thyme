@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import axios from 'axios';
 
-export default function TestEdit({ handleFoodItemsRequest, foodItem }) {
+export default function TestEdit({ handleBoth, foodItem }) {
 
     const [editFormData, setEditFormData] = useState(foodItem);
     const [toggle, setToggle] = useState(false)
@@ -12,7 +12,7 @@ export default function TestEdit({ handleFoodItemsRequest, foodItem }) {
         // if old post to edit and submit
         axios
             .put(`http://localhost:8000/api/food-items/${foodItem.id}/`, editFormData)
-            .then((res) => handleFoodItemsRequest());
+            .then((res) => handleBoth());
     }
 
     function handleChange(e) {

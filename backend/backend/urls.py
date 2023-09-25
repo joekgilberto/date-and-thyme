@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 
 # add include to the path
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 # import views from todo
 from main_app import views
@@ -31,7 +31,7 @@ router = routers.DefaultRouter()
 
 # register the router
 router.register(r'food-items',views.FoodItemView, 'food-item')
-router.register(r'notifications',views.NotificationView, 'notification')
+# router.register(r'notifications',views.NotificationView, 'notification')
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
@@ -39,8 +39,7 @@ urlpatterns = [
 	# add another path to the url patterns
 	# when you visit the localhost:8000/api
 	# you should be routed to the django Rest framework
-	path('api/', include(router.urls))
-
-
+	path('api/', include(router.urls)),
+    path('api/notifications/', views.NotificationView.as_view(), name="notifications"),
 ]
 

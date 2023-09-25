@@ -85,7 +85,7 @@ export default function TestApp() {
           <h4>{foodItem.name} {foodItem.quantity > 1 ? `(${foodItem.quantity})` : null}</h4>
           <p>Bought: {foodItem.purchase_date}</p>
           <p>Expires: {foodItem.expiration_date}</p>
-          <TestEdit handleFoodItemsRequest={handleFoodItemsRequest} foodItem={foodItem} />
+          <TestEdit handleBoth={handleBoth} foodItem={foodItem} />
           <button onClick={() => handleDelete(foodItem)}>Delete</button>
           <hr />
         </div>
