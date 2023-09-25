@@ -26,20 +26,34 @@ export default function TestApp() {
       const updatedData = { ...formData, [e.target.name]: e.target.value }
       setFormData(updatedData)
     }
+
+    async function handleNewNotification(data){
+      const expire = new Date(data.expiration_date)
+      const bought = new Date(data.purchase_date)
+      let daysLeft = Math.abs( expire - bought)
+      daysLeft = daysLeft/(1000*3600*24)
+      console.log(daysLeft)
+      const newNotification = {food_item: data.pk, days_left: daysLeft}
+
+      axios
+      .post("http://localhost:8000/api/notifications/", newNotification)
+      .then((res) => handleFoodItemsRequest())
+      .catch((err) => console.log(err));
+    }
   
     async function handleSubmit(e) {
       e.preventDefault()
       // if new post to submit
       axios
         .post("http://localhost:8000/api/food-items/", formData)
-        .then((res) => handleFoodItemsRequest());
+        .then((res) => handleNewNotification(res.data));
       
       setFormData(initState)
     };
   
     async function handleDelete(item) {
       axios
-        .delete(`http://localhost:8000/api/food-items/${item.id}/`)
+        .delete(`http://localhost:8000/api/food-items/${item.pk}/`)
         .then((res) => handleFoodItemsRequest());
     };
   
@@ -55,10 +69,10 @@ export default function TestApp() {
         {foodItems ? foodItems.map((foodItem, idx) => {
           return (<div key={idx}>
             <h4>{foodItem.name} {foodItem.quantity > 1 ? `(${foodItem.quantity})` : null}</h4>
-            <p>{foodItem.purchase_date}</p>
-            <p>{foodItem.expiration_date}</p>
-            <button onClick={() => handleDelete(foodItem)}>Delete</button>
+            <p>Bought: {foodItem.purchase_date}</p>
+            <p>Expires: {foodItem.expiration_date}</p>
             <TestEdit handleFoodItemsRequest={handleFoodItemsRequest} foodItem={foodItem} />
+            <button onClick={() => handleDelete(foodItem)}>Delete</button>
             <hr />
           </div>
           )

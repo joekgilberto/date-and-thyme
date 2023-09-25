@@ -7,12 +7,12 @@ from .models import FoodItem, Notification
 class FoodItemAdmin(admin.ModelAdmin):
 
 	# add the fields of the model here
-	list_display = ("name","purchase_date","expiration_date","quantity")
+	list_display = ("name","purchase_date","expiration_date","quantity","notification")
 	
 class NotificationAdmin(admin.ModelAdmin):
 
 	# add the fields of the model here
-	list_display = ("food_item","days_left","read","generation_date")
+	list_display = ("days_left","read","generation_date")
 
 # we will need to register the
 # model class and the Admin model class

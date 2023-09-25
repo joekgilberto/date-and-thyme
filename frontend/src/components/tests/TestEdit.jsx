@@ -30,7 +30,6 @@ export default function TestEdit({ handleFoodItemsRequest, foodItem }) {
         <div>
             {toggle?(
             <>
-            <button onClick={handleClick}>Discard</button>
             <form className="new" onSubmit={handleSubmit}>
                 <label>Name
                     <input type="text" name="name" onChange={handleChange} value={editFormData.name} required />
@@ -42,6 +41,7 @@ export default function TestEdit({ handleFoodItemsRequest, foodItem }) {
                     <input type="number" name="quantity" onChange={handleChange} min="1" value={editFormData.quantity} required />
                 </label>
                 <button type="submit">Save</button>
+                <button onClick={handleClick}>Discard Changes</button>
             </form>
             </>
             ):<button onClick={handleClick}>Edit</button>}

@@ -17,8 +17,8 @@ class Notification(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-  days_left = models.IntegerField()
-  read = models.BooleanField()
+  days_left = models.IntegerField(null=True)
+  read = models.BooleanField(default=False)
   generation_date = models.DateField(default=date.today)
 
   def __str__(self):
