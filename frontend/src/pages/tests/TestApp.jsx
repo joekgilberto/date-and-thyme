@@ -31,6 +31,11 @@ export default function TestApp() {
       .catch((err) => console.log(err));
   };
 
+  function handleBoth(){
+    handleFoodItemsRequest()
+    handleNotificationsRequest()
+  }
+
   function handleChange(e) {
     const updatedData = { ...formData, [e.target.name]: e.target.value }
     setFormData(updatedData)
@@ -46,7 +51,7 @@ export default function TestApp() {
 
     axios
       .post("http://localhost:8000/api/notifications/", newNotification)
-      .then((res) => handleFoodItemsRequest())
+      .then((res) => handleBoth())
       .catch((err) => console.log(err));
   }
 
@@ -63,13 +68,12 @@ export default function TestApp() {
   async function handleDelete(item) {
     axios
       .delete(`http://localhost:8000/api/food-items/${item.pk}/`)
-      .then((res) => handleFoodItemsRequest());
+      .then((res) => handleBoth());
   };
 
 
   useEffect(() => {
-    handleFoodItemsRequest()
-    handleNotificationsRequest()
+    handleBoth()
   }, [])
 
   return (
