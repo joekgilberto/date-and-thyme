@@ -1,11 +1,13 @@
 import './EditFood.css'
 
 import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 
 export default function EditFood({ foodItem }) {
 
+    const navigate = useNavigate()
     const [editFormData, setEditFormData] = useState(foodItem);
     const [show, setShow] = useState(false)
     const { toggle, setToggle } = useContext(FridgeContext);
@@ -26,7 +28,12 @@ export default function EditFood({ foodItem }) {
     function handleClick(e) {
         setEditFormData(foodItem)
         setShow(!show)
+    }
 
+    async function handleDelete(){
+        await foodItemServices.destroyFoodItem(foodItem.pk)
+        setToggle(!toggle)
+        navigate('/fridge')
     }
 
     return (
@@ -46,6 +53,7 @@ export default function EditFood({ foodItem }) {
                         <button type="submit">Save</button>
                         <button onClick={handleClick}>Discard Changes</button>
                     </form>
+                    <button onClick={handleDelete}>Delete {foodItem.name}</button>
                 </>
             ) : <button onClick={handleClick}>Edit</button>}
         </div>
