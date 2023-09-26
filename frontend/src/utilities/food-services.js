@@ -3,8 +3,10 @@ import * as notifServices from './notif-services'
 
 export async function getAllFoodItems() {
     try {
-        const response = await foodApi.index()
-        return response
+        return await foodApi.index().then((foods)=>{
+            foods.sort((a,b) => new Date(a.expiration_date) - new Date(b.expiration_date));
+            return foods
+        })
     } catch (err) {
         return err
     }

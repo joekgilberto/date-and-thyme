@@ -4,8 +4,10 @@ import * as tools from './tools'
 
 export async function getAllNotifs() {
     try {
-        const response = await notifApi.index()
-        return response
+        return await notifApi.index().then((notifs)=>{
+            notifs.sort((a,b) => a.days_left - b.days_left);
+            return notifs
+        })
     } catch (err) {
         return err
     }
