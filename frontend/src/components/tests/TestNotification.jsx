@@ -15,7 +15,7 @@ export default function TestNotification({ notification,handleBoth }) {
     async function handleClick(){
         const updatedNotification = { ...notification, read: !notification.read }
         axios
-            .put(`http://localhost:8000/api/notifications/${notification.pk}/`, updatedNotification)
+            .put(`http://localhost:8000/api/notifications/${notification.food_item}/`, updatedNotification)
             .then((res) => {
                 console.log(res.data)
                 handleBoth()})
@@ -26,5 +26,5 @@ export default function TestNotification({ notification,handleBoth }) {
         handleRequest()
     },[notification])
 
-    return <p><span onClick={handleClick}>{notification.read?'NEW: ':'OLD: '}</span>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
+    return <p><span onClick={handleClick}>{notification.read?'OLD: ':'NEW: '}</span>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
 }

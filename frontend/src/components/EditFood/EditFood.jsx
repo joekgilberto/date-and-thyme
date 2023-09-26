@@ -1,40 +1,22 @@
-import { useState } from "react"
+import './EditFood.css'
 
-import axios from 'axios';
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { FridgeContext } from "../../data";
+import * as foodItemServices from '../../utilities/food-services'
 
-export default function TestEdit({ handleBoth, foodItem }) {
+export default function EditFood({ foodItem }) {
 
+    const navigate = useNavigate()
     const [editFormData, setEditFormData] = useState(foodItem);
     const [show, setShow] = useState(false)
+    const { toggle, setToggle } = useContext(FridgeContext);
 
-    async function handleFindNotification(foodItem) {
-        axios
-            .get(`http://localhost:8000/api/notifications/?food=${foodItem.pk}`, { header: { 'Content-Type': 'application/json' } })
-            .then((res) => handleUpdateNotification(foodItem,res.data[0]))
-            .catch((error) => console.log(error));
-    }
-
-    async function handleUpdateNotification(foodItem,notification) {
-        const expire = new Date(foodItem.expiration_date)
-        const bought = new Date()
-        let daysLeft = Math.abs(expire - bought)
-        daysLeft = Math.ceil(daysLeft / (1000 * 3600 * 24))
-        console.log(daysLeft)
-        const updatedNotification = { ...notification, days_left: daysLeft }
-
-        console.log(updatedNotification)
-        axios
-            .put(`http://localhost:8000/api/notifications/${notification.food_item}/`, updatedNotification)
-            .then((res) => handleBoth())
-            .catch((err) => console.log(err));
-    }
-
-    async function handleSubmit() {
+    async function handleSubmit(e) {
+        e.preventDefault()
         setShow(false)
         // if old post to edit and submit
-        axios
-            .put(`http://localhost:8000/api/food-items/${foodItem.pk}/`, editFormData)
-            .then((res) => { handleFindNotification(res.data) });
+        foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(()=> setToggle(!toggle))
     }
 
     function handleChange(e) {
@@ -45,7 +27,11 @@ export default function TestEdit({ handleBoth, foodItem }) {
     function handleClick(e) {
         setEditFormData(foodItem)
         setShow(!show)
+    }
 
+    async function handleDelete(){
+        await foodItemServices.destroyFoodItem(foodItem.pk).then(()=> setToggle(!toggle))
+        navigate('/fridge')
     }
 
     return (
@@ -62,9 +48,10 @@ export default function TestEdit({ handleBoth, foodItem }) {
                         <label>Quantity
                             <input type="number" name="quantity" onChange={handleChange} min="1" value={editFormData.quantity} required />
                         </label>
-                        <button type="submit">Save</button>
+                        <button type="submit">Save Changes</button>
                         <button onClick={handleClick}>Discard Changes</button>
                     </form>
+                    <button onClick={handleDelete}>Delete {foodItem.name}</button>
                 </>
             ) : <button onClick={handleClick}>Edit</button>}
         </div>
