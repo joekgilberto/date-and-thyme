@@ -24,7 +24,7 @@ export default function TestEdit({ handleBoth, foodItem }) {
 
         console.log(updatedNotification)
         axios
-            .post(`http://localhost:8000/api/notifications/${notification.pk}`, updatedNotification)
+            .put(`http://localhost:8000/api/notifications/${notification.pk}/`, updatedNotification)
             .then((res) => handleBoth())
             .catch((err) => console.log(err));
     }
