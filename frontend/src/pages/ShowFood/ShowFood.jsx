@@ -44,7 +44,7 @@ export default function ShowFood() {
           </div>
           <EditFood foodItem={foodItem} />
           <div className='show-notification'>
-          <p>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notif.days_left} day(s) left` : null}</p>
+          <p>{foodItem && notif ? `Your ${foodItem.name.toLowerCase()} has ${notif.days_left} day(s) left` : null}</p>
           </div>
         </>
       ) : null}

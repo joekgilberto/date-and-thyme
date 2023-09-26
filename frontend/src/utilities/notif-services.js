@@ -1,4 +1,5 @@
 import * as notifApi from './notif-api'
+import * as foodApi from './food-api'
 import * as tools from './tools'
 
 export async function getAllNotifs() {
@@ -15,6 +16,25 @@ export async function getNotif(id) {
         const response = await notifApi.show(id)
         return response
     } catch (err) {
+        return err
+    }
+}
+
+export async function getNotifsFood(){
+    try {
+        const data = []
+        await getAllNotifs().then(async (res)=>{
+            console.log(res)
+            for (let notif of res){
+                await foodApi.show(notif.food_item).then((secondRes)=>{
+                    console.log(secondRes)
+                    data.push(secondRes)
+                })
+            }
+        })
+        console.log(data)
+        return data
+    }catch(err){
         return err
     }
 }

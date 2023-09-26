@@ -38,7 +38,7 @@ export default function Header() {
         <Link to="/fridge/new">
           <h2>add groceries</h2>
         </Link>
-        <Link to="/notifications">
+        <Link to="/feed">
           <h2>notifs{notifNum?` (${notifNum})`:null}</h2>
         </Link>
         <Link to="/test">
