@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import * as tools from '../../utilities/tools'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import KitchenIcon from '@mui/icons-material/Kitchen';
+import Badge from '@mui/material/Badge';
 import { FridgeContext } from "../../data";
 
 const style = {
@@ -14,7 +17,21 @@ const style = {
 
 export default function Header() {
   const { toggle, Mooli } = React.useContext(FridgeContext);
+  const [notifNum, setNotifNum] = React.useState(null)
 
+  async function handleUnread() {
+    await tools.unreadNotifs().then((res) => {
+      setNotifNum(res)
+    })
+  }
+  //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
+  React.useEffect(() => {
+    handleUnread()
+  }, [])
+
+  React.useEffect(() => {
+    handleUnread()
+  }, [toggle])
   return (
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
@@ -36,7 +53,11 @@ export default function Header() {
                 <Button color="inherit" style={Mooli}>add groceries</Button>
               </Link>
               <Link to="/feed">
-                <Button color="inherit" style={Mooli}>notifs</Button>
+                <Button color="inherit">
+                  <Badge badgeContent={notifNum} color="error">
+                    <KitchenIcon />
+                  </Badge>
+                </Button>
               </Link>
               <Link to="/test">
                 <Button color="inherit" style={Mooli}>test</Button>
