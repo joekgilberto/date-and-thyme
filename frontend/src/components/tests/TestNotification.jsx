@@ -14,7 +14,7 @@ export default function TestNotification({ notification }) {
 
     useEffect(()=>{
         handleRequest()
-    },[])
+    },[notification])
 
     return <p>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
 }
