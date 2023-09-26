@@ -20,29 +20,12 @@ export async function getNotif(id) {
     }
 }
 
-export async function getNotifsFood(){
-    try {
-        const data = []
-        await getAllNotifs().then(async (res)=>{
-            console.log(res)
-            for (let notif of res){
-                await foodApi.show(notif.food_item).then((secondRes)=>{
-                    console.log(secondRes)
-                    data.push(secondRes)
-                })
-            }
-        })
-        console.log(data)
-        return data
-    }catch(err){
-        return err
-    }
-}
-
 export async function createNotif(foodItemData) {
     try {
+        console.log(foodItemData)
+        console.log(foodItemData.name)
         const daysLeft = tools.initDaysLeft(foodItemData)
-        const data = {food_item: foodItemData.pk, days_left: daysLeft}
+        const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft}
         console.log('DATA',data)
         const response = await notifApi.create(data)
         return response
@@ -51,13 +34,26 @@ export async function createNotif(foodItemData) {
     }
 }
 
-export async function updateNotif(foodItemData) {
+export async function updateNotifDate(foodItemData) {
     try {
         const daysLeft = tools.updatedDaysLeft(foodItemData)
         const data = {food_item: foodItemData.pk, days_left: daysLeft}
         console.log('DATA',data)
 
         const response = await notifApi.update(foodItemData.pk,data)
+        return response
+
+    } catch (err) {
+        return err
+    }
+}
+
+export async function updateNotifRead(notif) {
+    try {
+        const data = {...notif, read: !notif.read}
+        console.log('DATA',data)
+
+        const response = await notifApi.update(notif.food_item,data)
         return response
 
     } catch (err) {

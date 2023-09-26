@@ -17,6 +17,7 @@ class Notification(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+  food_item_name = models.CharField(null=True)
   days_left = models.IntegerField(null=True)
   read = models.BooleanField(default=False)
   generation_date = models.DateField(default=date.today)

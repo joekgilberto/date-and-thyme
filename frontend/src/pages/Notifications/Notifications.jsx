@@ -8,25 +8,24 @@ import * as notifServices from '../../utilities/notif-services'
 export default function Notifications() {
 
     const { notifs, toggle, setToggle } = useContext(FridgeContext);
-    const [notifFoodItems, setNotifFoodItems] = useState(null)
 
-    async function handleRequest(){
-        const data = await notifServices.getNotifsFood()
-        setNotifFoodItems(data)
+    async function handleClick(notif){
+        await notifServices.updateNotifRead(notif)
+        setToggle(!toggle)
+        console.log(notifs)
     }
 
     useEffect(() => {
-        handleRequest()
         setToggle(!toggle)
     }, [])
 
     return (
         <div className='Fridge'>
-            {notifs && notifFoodItems ? notifs.map((notif, idx) => {
+            {notifs ? notifs.map((notif, idx) => {
                 return (<div key={idx}>
-                    <p>{notif.read?'OLD: ':'NEW: '}</p>
+                    <p onClick={()=>handleClick(notif)}>{notif.read?'OLD: ':'NEW: '}</p>
                     <Link to={`/fridge/${notif.food_item}`}>
-                        <p>{`Your ${notifFoodItems[idx].name} has ${notif.days_left} day(s) left`}</p>
+                        <p>{`Your ${notif.food_item_name} has ${notif.days_left} day(s) left`}</p>
                     </Link>
                     <hr />
                 </div>)

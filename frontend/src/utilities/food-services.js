@@ -35,7 +35,7 @@ export async function createFoodItem(data) {
 export async function updateFoodItem(id,data) {
     try {
         await foodApi.update(id,data).then((res)=>{
-            notifServices.updateNotif(res)
+            notifServices.updateNotifDate(res)
             return res
         })
     } catch (err) {

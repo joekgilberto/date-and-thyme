@@ -18,4 +18,4 @@ class NotificationSerializer(serializers.ModelSerializer):
 	# create a meta class
 	class Meta:
 		model = Notification
-		fields = ('food_item','days_left','read','generation_date')
+		fields = ('food_item','food_item_name','days_left','read','generation_date')
