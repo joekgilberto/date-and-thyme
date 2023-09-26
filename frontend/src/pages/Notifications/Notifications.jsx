@@ -24,6 +24,7 @@ export default function Notifications() {
         <div className='Fridge'>
             {notifs && notifFoodItems ? notifs.map((notif, idx) => {
                 return (<div key={idx}>
+                    <p>{notif.read?'OLD: ':'NEW: '}</p>
                     <Link to={`/fridge/${notif.food_item}`}>
                         <p>{`Your ${notifFoodItems[idx].name} has ${notif.days_left} day(s) left`}</p>
                     </Link>
