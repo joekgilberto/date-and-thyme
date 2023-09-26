@@ -18,7 +18,7 @@ export default function Notifications() {
     }, [])
 
     return (
-        <div className='Fridge'>
+        <div className='Notifications'>
             {notifs ? notifs.map((notif, idx) => {
                 return (notif.days_left < 4 ?
                     <div key={idx}>
