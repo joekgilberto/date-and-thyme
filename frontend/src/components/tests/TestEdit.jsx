@@ -9,7 +9,7 @@ export default function TestEdit({ handleBoth, foodItem }) {
 
     async function handleFindNotification(foodItem) {
         axios
-            .get(`http://localhost:8000/api/query/?food=${foodItem.pk}`, { header: { 'Content-Type': 'application/json' } })
+            .get(`http://localhost:8000/api/notifications/?food=${foodItem.pk}`, { header: { 'Content-Type': 'application/json' } })
             .then((res) => handleUpdateNotification(foodItem,res.data[0]))
             .catch((error) => console.log(error));
     }
@@ -24,7 +24,7 @@ export default function TestEdit({ handleBoth, foodItem }) {
 
         console.log(updatedNotification)
         axios
-            .put(`http://localhost:8000/api/notifications/${notification.pk}/`, updatedNotification)
+            .put(`http://localhost:8000/api/notifications/${notification.food_item}/`, updatedNotification)
             .then((res) => handleBoth())
             .catch((err) => console.log(err));
     }

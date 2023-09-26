@@ -26,5 +26,5 @@ export default function TestNotification({ notification,handleBoth }) {
         handleRequest()
     },[notification])
 
-    return <p><span onClick={handleClick}>{notification.read?'NEW: ':'OLD: '}</span>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
+    return <p><span onClick={handleClick}>{notification.read?'OLD: ':'NEW: '}</span>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
 }
