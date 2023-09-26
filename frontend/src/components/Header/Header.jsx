@@ -1,50 +1,50 @@
-import './Header.css';
-
-import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from 'react';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { FridgeContext } from "../../data";
-import * as tools from '../../utilities/tools'
+
+const style = {
+  width: '90%',
+}
+
 
 export default function Header() {
-
-  const { toggle } = useContext(FridgeContext);
-  const [notifNum,setNotifNum] = useState(null)
-
-  async function handleUnread(){
-    await tools.unreadNotifs().then((res)=>{
-      setNotifNum(res)
-    })
-  }
-  //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
-  useEffect(()=>{
-    handleUnread()
-  },[])
-
-  useEffect(()=>{
-    handleUnread()
-  },[toggle])
-
-
+  const { toggle, Mooli } = React.useContext(FridgeContext);
 
   return (
-    <header>
-      <Link to="/">
-        <h1>Date & Thyme</h1>
-      </Link>
-      <nav>
-        <Link to="/fridge">
-          <h2>fridge</h2>
-        </Link>
-        <Link to="/fridge/new">
-          <h2>add groceries</h2>
-        </Link>
-        <Link to="/feed">
-          <h2>notifs{notifNum?` (${notifNum})`:null}</h2>
-        </Link>
-        <Link to="/test">
-          <h2>Tests</h2>
-        </Link>
-      </nav>
-    </header>
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar position="static">
+        <Toolbar style={style}>
+          <div className='header-spreader'>
+            <div className='header-logo'>
+              <img className='thyme' src={require('../../assets/thyme.png')} />
+              <Link to="/">
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={Mooli}>
+                  date & thyme
+                </Typography>
+              </Link>
+            </div>
+            <div className='header-buttons'>
+              <Link to="/fridge">
+                <Button color="inherit" style={Mooli}>fridge</Button>
+              </Link>
+              <Link to="/fridge/new">
+                <Button color="inherit" style={Mooli}>add groceries</Button>
+              </Link>
+              <Link to="/feed">
+                <Button color="inherit" style={Mooli}>notifs</Button>
+              </Link>
+              <Link to="/test">
+                <Button color="inherit" style={Mooli}>test</Button>
+              </Link>
+            </div>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }

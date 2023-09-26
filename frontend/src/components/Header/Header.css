@@ -8,3 +8,21 @@ nav{
     display: flex;
     gap: 20px;
 }
+
+.header-logo{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.header-spreader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-spreader a{
+    color: #fff;
+    text-decoration: none;
+}

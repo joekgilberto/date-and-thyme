@@ -9,6 +9,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import KitchenIcon from '@mui/icons-material/Kitchen';
 
 const style = {
     position: 'absolute',
@@ -22,16 +23,17 @@ const style = {
     p: 4,
 };
 
-const textStyle = {
-    color: 'red'
-}
-
 export default function ConfirmDelete({ foodItem }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate()
-    const { toggle, setToggle } = React.useContext(FridgeContext);
+    const { toggle, setToggle, Mooli, OpenSans } = React.useContext(FridgeContext);
+
+    const textStyle = {
+        ...Mooli,
+        color: '#ff0000'
+    }
 
     async function handleDelete() {
         await foodItemServices.destroyFoodItem(foodItem.pk).then(() => setToggle(!toggle))
@@ -56,11 +58,14 @@ export default function ConfirmDelete({ foodItem }) {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2">
+                        <Typography id="transition-modal-title" variant="h6" component="h2" style={OpenSans}>
+                            wait!
+                        </Typography>
+                        <Typography id="transition-modal-title" variant="p" component="p" style={OpenSans}>
                             Are you sure you want to delete your {foodItem.name}?
                         </Typography>
                         <Button onClick={handleDelete} style={textStyle}>Delete</Button>
-                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={handleClose} style={Mooli}>Cancel</Button>
                     </Box>
                 </Fade>
             </Modal>

@@ -7,6 +7,7 @@ import * as notifServices from '../utilities/notif-services'
 import * as tools from '../utilities/tools'
 
 import Header from '../components/Header/Header';
+import Header2 from '../components/Header/Header2';
 import Main from '../components/Main/Main';
 import Footer from '../components/Footer/Footer';
 
@@ -16,6 +17,17 @@ export default function App() {
   const [foodItems, setFoodItems] = useState(null);
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
+
+  const Mooli ={
+    fontFamily: '"Mooli", sans-serif',
+    textTransform: 'lowercase'
+  }
+
+  const OpenSans ={
+    fontFamily: '"Open Sans", sans-serif'
+  }
+
+  
 
   async function handleRequest() {
     await foodItemServices.getAllFoodItems().then((res) => {
@@ -47,7 +59,9 @@ export default function App() {
           notifs: notifs,
           setNotifs: setNotifs,
           toggle: toggle,
-          setToggle: setToggle
+          setToggle: setToggle,
+          Mooli: Mooli,
+          OpenSans: OpenSans
         }}
       >
         <Header />
