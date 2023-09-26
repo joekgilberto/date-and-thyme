@@ -21,9 +21,12 @@ export async function getFoodItem(id) {
 
 export async function createFoodItem(data) {
     try {
-        const response = await foodApi.create(data)
-        notifServices.createNotif(response)
-        return response
+        await foodApi.create(data).then((res)=>{
+            console.log(res)
+            notifServices.createNotif(res)
+            return res
+        })
+        
     } catch (err) {
         return err
     }

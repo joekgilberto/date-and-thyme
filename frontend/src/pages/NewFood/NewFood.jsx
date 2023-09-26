@@ -11,7 +11,6 @@ const initState = {
 }
 
 export default function NewFood() {
-
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState(initState);
