@@ -1,12 +1,16 @@
 import './Fridge.css';
 
-import { useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { useContext, useEffect } from "react";
 import { FridgeContext } from "../../data";
 
 export default function Fridge() {
 
-    const { foodItems } = useContext(FridgeContext);
+    const { foodItems, toggle, setToggle } = useContext(FridgeContext);
+
+    useEffect(()=>{
+        setToggle(!toggle)
+    },[])
 
     console.log(foodItems)
     return (

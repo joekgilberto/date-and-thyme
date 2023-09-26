@@ -2,6 +2,8 @@ import './NewFood.css';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { FridgeContext } from "../../data";
 import * as tools from '../../utilities/food-services'
 
 const initState = {
@@ -12,6 +14,7 @@ const initState = {
 
 export default function NewFood() {
   const navigate = useNavigate()
+  const { toggle, setToggle } = useContext(FridgeContext);
 
   const [formData, setFormData] = useState(initState);
 
@@ -25,7 +28,7 @@ export default function NewFood() {
 
     tools.createFoodItem(formData)
     setFormData(initState)
-
+    setToggle(!toggle)
     navigate('/fridge')
   };
 

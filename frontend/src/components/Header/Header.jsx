@@ -1,22 +1,28 @@
 import './Header.css';
 
-import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from 'react';
+import { FridgeContext } from "../../data";
 import * as tools from '../../utilities/tools'
 
 export default function Header() {
 
+  const { toggle } = useContext(FridgeContext);
   const [notifNum,setNotifNum] = useState(null)
 
-  async function handleNotifications(){
+  async function handleUnread(){
     await tools.unreadNotifs().then((res)=>{
       setNotifNum(res)
     })
   }
   //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
   useEffect(()=>{
-    handleNotifications()
+    handleUnread()
   },[])
+
+  useEffect(()=>{
+    handleUnread()
+  },[toggle])
 
 
 
