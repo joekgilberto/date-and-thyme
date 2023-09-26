@@ -34,6 +34,16 @@ export async function createNotif(foodItemData) {
     }
 }
 
+export async function updateNotif(id,data) {
+    try {
+        const response = await notifApi.update(id,data)
+        return response
+
+    } catch (err) {
+        return err
+    }
+}
+
 export async function updateNotifDate(foodItemData) {
     try {
         const daysLeft = tools.updatedDaysLeft(foodItemData)

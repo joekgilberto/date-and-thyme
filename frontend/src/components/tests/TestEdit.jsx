@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function TestEdit({ handleBoth, foodItem }) {
 
     const [editFormData, setEditFormData] = useState(foodItem);
-    const [toggle, setToggle] = useState(false)
+    const [show, setShow] = useState(false)
 
     async function handleFindNotification(foodItem) {
         axios
@@ -30,7 +30,7 @@ export default function TestEdit({ handleBoth, foodItem }) {
     }
 
     async function handleSubmit() {
-        setToggle(false)
+        setShow(false)
         // if old post to edit and submit
         axios
             .put(`http://localhost:8000/api/food-items/${foodItem.pk}/`, editFormData)
@@ -44,13 +44,13 @@ export default function TestEdit({ handleBoth, foodItem }) {
 
     function handleClick(e) {
         setEditFormData(foodItem)
-        setToggle(!toggle)
+        setShow(!show)
 
     }
 
     return (
         <div>
-            {toggle ? (
+            {show ? (
                 <>
                     <form className="new" onSubmit={handleSubmit}>
                         <label>Name

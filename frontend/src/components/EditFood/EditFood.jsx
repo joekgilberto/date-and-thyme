@@ -14,10 +14,9 @@ export default function EditFood({ foodItem }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        setToggle(!toggle)
         setShow(false)
         // if old post to edit and submit
-        foodItemServices.updateFoodItem(foodItem.pk, editFormData)
+        foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(()=> setToggle(!toggle))
     }
 
     function handleChange(e) {
@@ -31,8 +30,7 @@ export default function EditFood({ foodItem }) {
     }
 
     async function handleDelete(){
-        await foodItemServices.destroyFoodItem(foodItem.pk)
-        setToggle(!toggle)
+        await foodItemServices.destroyFoodItem(foodItem.pk).then(()=> setToggle(!toggle))
         navigate('/fridge')
     }
 
@@ -50,7 +48,7 @@ export default function EditFood({ foodItem }) {
                         <label>Quantity
                             <input type="number" name="quantity" onChange={handleChange} min="1" value={editFormData.quantity} required />
                         </label>
-                        <button type="submit">Save</button>
+                        <button type="submit">Save Changes</button>
                         <button onClick={handleClick}>Discard Changes</button>
                     </form>
                     <button onClick={handleDelete}>Delete {foodItem.name}</button>

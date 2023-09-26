@@ -26,10 +26,10 @@ export default function NewFood() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    tools.createFoodItem(formData)
-    setFormData(initState)
-    setToggle(!toggle)
-    navigate('/fridge')
+    tools.createFoodItem(formData).then(()=>{
+      setToggle(!toggle)
+      navigate('/fridge')
+    })
   };
 
   return (
