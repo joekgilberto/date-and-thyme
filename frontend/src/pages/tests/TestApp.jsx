@@ -78,7 +78,6 @@ export default function TestApp() {
 
   return (
     <div className="App">
-      <h1>date & thyme</h1>
       <h2>Fridge</h2>
       {foodItems ? foodItems.map((foodItem, idx) => {
         return (<div key={idx}>
@@ -106,7 +105,7 @@ export default function TestApp() {
       <div>
         <h2>Notifications</h2>
         {notifications ? notifications.map((notification, idx) => {
-          return (<TestNotification key={idx} notification={notification} />)
+          return (<TestNotification key={idx} notification={notification} handleBoth={handleBoth} />)
         }) : null}
       </div>
     </div>

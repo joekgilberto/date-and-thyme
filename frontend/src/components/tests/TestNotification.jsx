@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 import axios from 'axios';
 
-export default function TestNotification({ notification }) {
+export default function TestNotification({ notification,handleBoth }) {
 
     const [foodItem, setFoodItem] = useState(null);
 
@@ -12,9 +12,19 @@ export default function TestNotification({ notification }) {
             .then((res) => setFoodItem(res.data));
     }
 
+    async function handleClick(){
+        const updatedNotification = { ...notification, read: !notification.read }
+        axios
+            .put(`http://localhost:8000/api/notifications/${notification.pk}/`, updatedNotification)
+            .then((res) => {
+                console.log(res.data)
+                handleBoth()})
+            .catch((err) => console.log(err));
+    }
+
     useEffect(()=>{
         handleRequest()
     },[notification])
 
-    return <p>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
+    return <p><span onClick={handleClick}>{notification.read?'NEW: ':'OLD: '}</span>{foodItem ? `Your ${foodItem.name.toLowerCase()} has ${notification.days_left} day(s) left` : null}</p>
 }
