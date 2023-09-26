@@ -44,7 +44,7 @@ export async function update(id,data) {
 
 export async function find(id) {
     return axios
-        .get(`${QUERY_URL}${id}/`)
+        .get(`${QUERY_URL}${id}`)
         .then((res) => {
             return res.data
         })

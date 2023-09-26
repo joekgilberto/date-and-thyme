@@ -4,7 +4,16 @@ export function initDaysLeft(foodItem) {
     const expire = new Date(foodItem.expiration_date)
     const bought = new Date(foodItem.purchase_date)
     let daysLeft = Math.abs(expire - bought)
-    daysLeft = daysLeft / (1000 * 3600 * 24)
+    daysLeft = Math.ceil(daysLeft / (1000 * 3600 * 24))
+
+    return daysLeft
+}
+
+export function updatedDaysLeft(foodItem) {
+    const expire = new Date(foodItem.expiration_date)
+    const bought = new Date()
+    let daysLeft = Math.abs(expire - bought)
+    daysLeft = Math.ceil(daysLeft / (1000 * 3600 * 24))
 
     return daysLeft
 }
