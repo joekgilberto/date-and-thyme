@@ -1,3 +1,5 @@
+import './Header.css'
+
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as tools from '../../utilities/tools'
@@ -48,20 +50,23 @@ export default function Header() {
               </div>
               <div className='header-buttons'>
                 <Link to="/fridge">
-                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>fridge</Button>
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>fridge</Button>
                 </Link>
+                |
                 <Link to="/fridge/new">
-                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>add groceries</Button>
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>add groceries</Button>
                 </Link>
+                |
                 <Link to="/feed">
-                  <Button color="inherit">
+                  <Button color="inherit" style={{fontSize: '24px', margin: '0 5px' }}>
                     <Badge badgeContent={notifNum} color="error">
                       <KitchenIcon />
                     </Badge>
                   </Button>
                 </Link>
+                |
                 <Link to="/test">
-                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>test</Button>
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>test</Button>
                 </Link>
               </div>
             </div>

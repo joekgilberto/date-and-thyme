@@ -7,7 +7,6 @@ import * as notifServices from '../utilities/notif-services'
 import * as tools from '../utilities/tools'
 
 import Header from '../components/Header/Header';
-import Header2 from '../components/Header/Header2';
 import Main from '../components/Main/Main';
 import Footer from '../components/Footer/Footer';
 

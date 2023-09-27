@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className='Home'>
-      <div className='home-background-text'>
+      <div className='background-text-comp'>
         <BackgroundText />
       </div>
       <div className='home-card'>

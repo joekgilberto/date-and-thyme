@@ -10,7 +10,7 @@
     height: calc(100vh - 185px);
 }
 
-.home-background-text{
+.background-text-comp{
     overflow-y: hidden;
 }
 

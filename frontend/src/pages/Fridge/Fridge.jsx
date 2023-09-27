@@ -17,7 +17,7 @@ export default function Fridge() {
     console.log(foodItems)
     return (
         <div className='Fridge'>
-            <h1>Fridge</h1>
+            <h1>Fridge 🧊</h1>
             {foodItems ? foodItems.map((foodItem, idx) => {
                 return (
                     <Paper elevation={3} key={idx} style={{ margin:'20px',padding: '20px'}}>
