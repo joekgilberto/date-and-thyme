@@ -1,8 +1,8 @@
 import * as authAPI from './auth-api'
 
-export async function signUp(data) {
+export async function login(data) {
     try {
-        const response = await authAPI.create(data)
+        const response = await authAPI.login(data)
         return response
         
     } catch (err) {

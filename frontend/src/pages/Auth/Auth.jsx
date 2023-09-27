@@ -1,7 +1,8 @@
 import './Auth.css';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import * as authServices from '../../utilities/auth-services'
+import { FridgeContext } from "../../data";
 
 const initState = {
     email: "",
@@ -11,6 +12,7 @@ const initState = {
 
 export default function Auth() {
 
+    const { setUsername, setToken } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
 
     function handleChange(e) {
@@ -20,8 +22,11 @@ export default function Auth() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-
-        authServices.signUp(formData)
+        await authServices.login(formData).then((res)=>{
+            setUsername(formData.username)
+            setToken(res.token)
+        })
+        .catch((err)=>console.log(err))
     };
 
     return (

@@ -1,7 +1,7 @@
 import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_AUTH_API_URL;
 
-export async function create(data) {
+export async function login(data) {
     return axios
         .post(BASE_URL, data)
         .then((res) => {

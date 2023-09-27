@@ -27,6 +27,8 @@ from .models import FoodItem,Notification
 # 	queryset = FoodItem.objects.all()
 
 class FoodItemList(APIView):
+    permission_classes = (IsAuthenticated,)             # <-- And here
+
     """
     List all snippets, or create a new snippet.
     """
@@ -43,6 +45,8 @@ class FoodItemList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class FoodItemDetail(APIView):
+    permission_classes = (IsAuthenticated,)             # <-- And here
+
     """
     Retrieve, update or delete a snippet instance.
     """
@@ -85,6 +89,7 @@ class FoodItemDetail(APIView):
 #     queryset = Notification.objects.all()
 
 class NotificationList(APIView):
+    permission_classes = (IsAuthenticated,)
     """
     List all snippets, or create a new snippet.
     """
@@ -101,6 +106,7 @@ class NotificationList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class NotificationDetail(APIView):
+    permission_classes = (IsAuthenticated,)
     """
     Retrieve, update or delete a snippet instance.
     """

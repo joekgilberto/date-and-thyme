@@ -26,7 +26,7 @@ export default function Notifications() {
             <Paper>
                 <Stack sx={{ width: '100%', padding:'20px' }} spacing={2}>
                     {notifs?.length ? notifs.map((notif, idx) => {
-                        return <Notif notif={notif} />
+                        return <Notif key={idx} notif={notif} />
                     }) : null}
                 </Stack>
             </Paper>
