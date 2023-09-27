@@ -22,7 +22,7 @@ export default function Notifications() {
 
     return (
         <div className='Notifications'>
-            <h1>Notifications</h1>
+            <h1>Notifications 🔔</h1>
             <Paper>
                 <Stack sx={{ width: '100%', padding:'20px' }} spacing={2}>
                     {notifs?.length ? notifs.map((notif, idx) => {

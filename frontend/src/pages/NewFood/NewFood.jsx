@@ -43,7 +43,7 @@ export default function NewFood() {
       <div className='new-food-card'>
         <Paper style={{ padding: '40px 20px', backgroundColor: '' }}>
           <form className="new" onSubmit={handleSubmit}>
-            <h1>Add Groceries</h1>
+            <h1>Add Groceries 🛒</h1>
             <label>Grocery
               <input type="text" name="name" onChange={handleChange} value={formData.name} required />
             </label>
