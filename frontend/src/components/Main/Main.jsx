@@ -7,6 +7,7 @@ import Fridge from '../../pages/Fridge/Fridge';
 import NewFood from '../../pages/NewFood/NewFood';
 import ShowFood from '../../pages/ShowFood/ShowFood';
 import Notifications from '../../pages/Notifications/Notifications';
+import Auth from '../../pages/Auth/Auth';
 import TestApp from '../../pages/tests/TestApp';
 import Error from '../../pages/Error/Error';
 
@@ -21,6 +22,7 @@ export default function Main() {
                 <Route path="/fridge/new" element={<NewFood />} />
                 <Route path="/fridge/:id" element={<ShowFood />} />
                 <Route path="/feed" element={<Notifications />} />
+                <Route path="/auth" element={<Auth />} />
                 <Route path="/test" element={<TestApp />} />
                 <Route path={"/*"} element={<Error />} />
             </Routes>
