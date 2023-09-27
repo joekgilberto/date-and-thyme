@@ -1,9 +1,15 @@
 import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_FOOD_API_URL;
 
+const config={
+    headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`
+    }
+}
+
 export async function index() {
     return axios
-        .get(BASE_URL)
+        .get(BASE_URL,config)
         .then((res) => {
             return res.data
         })
@@ -12,8 +18,9 @@ export async function index() {
 };
 
 export async function show(id) {
+
     return axios
-        .get(`${BASE_URL}${id}/`)
+        .get(`${BASE_URL}${id}/`,config)
         .then((res) => {
             return res.data
         })
@@ -22,8 +29,9 @@ export async function show(id) {
 };
 
 export async function create(data) {
+ 
     return axios
-        .post(BASE_URL, data)
+        .post(BASE_URL,data,config)
         .then((res) => {
             console.log(res.data)
             return res.data
@@ -34,7 +42,7 @@ export async function create(data) {
 
 export async function update(id,data) {
     return axios
-        .put(`${BASE_URL}${id}/`, data)
+        .put(`${BASE_URL}${id}/`,data,config)
         .then((res) => {
             return res.data
         })
@@ -44,7 +52,7 @@ export async function update(id,data) {
 
 export async function destroy(id) {
     return axios
-        .delete(`${BASE_URL}${id}/`)
+        .delete(`${BASE_URL}${id}/`,config)
         .then((res) => {
             return res.data
         })

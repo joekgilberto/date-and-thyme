@@ -17,7 +17,6 @@ export default function App() {
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
   const [username, setUsername] = useState(null)
-  const [token, setToken] = useState(null)
 
   const Mooli ={
     fontFamily: '"Mooli", sans-serif',
@@ -66,8 +65,6 @@ export default function App() {
           setToggle: setToggle,
           username: username,
           setUsername: setUsername,
-          token: token,
-          setToken: setToken,
           Mooli: Mooli,
           OpenSans: OpenSans
         }}

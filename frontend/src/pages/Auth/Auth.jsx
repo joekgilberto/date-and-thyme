@@ -3,6 +3,8 @@ import './Auth.css';
 import { useState, useContext } from 'react';
 import * as authServices from '../../utilities/auth-services'
 import { FridgeContext } from "../../data";
+import { setUserToken } from '../../utilities/auth-token'
+import { useNavigate } from 'react-router-dom';
 
 const initState = {
     email: "",
@@ -12,7 +14,9 @@ const initState = {
 
 export default function Auth() {
 
-    const { setUsername, setToken } = useContext(FridgeContext);
+    const navigate = useNavigate()
+
+    const { setUsername, toggle, setToggle } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
 
     function handleChange(e) {
@@ -24,7 +28,9 @@ export default function Auth() {
         e.preventDefault()
         await authServices.login(formData).then((res)=>{
             setUsername(formData.username)
-            setToken(res.token)
+            setUserToken(res.token)
+            setToggle(!toggle)
+            navigate('/')
         })
         .catch((err)=>console.log(err))
     };
