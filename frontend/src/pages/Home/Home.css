@@ -1,0 +1,22 @@
+.Home{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Home>div{
+    width: 50%;
+    height: calc(100vh - 185px);
+}
+
+.home-background-text{
+    overflow-y: hidden;
+}
+
+.home-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}

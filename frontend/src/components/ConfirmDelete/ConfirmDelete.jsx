@@ -57,14 +57,14 @@ export default function ConfirmDelete({ foodItem }) {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2" style={OpenSans}>
+                        <Typography id="transition-modal-title" variant="h4" component="h4" style={OpenSans}>
                             wait!
                         </Typography>
-                        <Typography id="transition-modal-title" variant="p" component="p" style={OpenSans}>
+                        <Typography id="transition-modal-title" variant="p" component="p" style={{...OpenSans, padding: '20px 0'}}>
                             Are you sure you want to delete your {foodItem.name}?
                         </Typography>
-                        <Button onClick={handleDelete} style={textStyle}>Delete</Button>
-                        <Button onClick={handleClose} style={Mooli}>Cancel</Button>
+                        <Button size='large' onClick={handleDelete} style={textStyle}>Delete</Button>
+                        <Button size="large"onClick={handleClose} style={Mooli}>Cancel</Button>
                     </Box>
                 </Fade>
             </Modal>

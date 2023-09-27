@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge';
 import { FridgeContext } from "../../data";
 
 const style = {
-  width: '90%',
+  width: '95%',
 }
 
 
@@ -33,39 +33,41 @@ export default function Header() {
     handleUnread()
   }, [toggle])
   return (
-    <Box sx={{ flexGrow: 1 }} >
-      <AppBar position="static">
-        <Toolbar style={style}>
-          <div className='header-spreader'>
-            <div className='header-logo'>
-              <img className='thyme' src={require('../../assets/thyme.png')} />
-              <Link to="/">
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={Mooli}>
-                  date & thyme
-                </Typography>
-              </Link>
+    <header>
+      <Box sx={{ flexGrow: 1 }} >
+        <AppBar position="static">
+          <Toolbar style={style}>
+            <div className='header-spreader'>
+              <div className='header-logo'>
+                <img className='thyme' src={require('../../assets/thyme.png')} />
+                <Link to="/">
+                  <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} style={{ ...Mooli, padding: '20px 0' }}>
+                    date & thyme
+                  </Typography>
+                </Link>
+              </div>
+              <div className='header-buttons'>
+                <Link to="/fridge">
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>fridge</Button>
+                </Link>
+                <Link to="/fridge/new">
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>add groceries</Button>
+                </Link>
+                <Link to="/feed">
+                  <Button color="inherit">
+                    <Badge badgeContent={notifNum} color="error">
+                      <KitchenIcon />
+                    </Badge>
+                  </Button>
+                </Link>
+                <Link to="/test">
+                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px' }}>test</Button>
+                </Link>
+              </div>
             </div>
-            <div className='header-buttons'>
-              <Link to="/fridge">
-                <Button color="inherit" style={Mooli}>fridge</Button>
-              </Link>
-              <Link to="/fridge/new">
-                <Button color="inherit" style={Mooli}>add groceries</Button>
-              </Link>
-              <Link to="/feed">
-                <Button color="inherit">
-                  <Badge badgeContent={notifNum} color="error">
-                    <KitchenIcon />
-                  </Badge>
-                </Button>
-              </Link>
-              <Link to="/test">
-                <Button color="inherit" style={Mooli}>test</Button>
-              </Link>
-            </div>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </header>
   );
 }

@@ -4,11 +4,6 @@ header{
     align-items: center;
 }
 
-nav{
-    display: flex;
-    gap: 20px;
-}
-
 .header-logo{
     display: flex;
     justify-self: center;
@@ -31,3 +26,9 @@ nav{
     color: #fff;
     text-decoration: none;
 }
+
+.thyme {
+    width: 65px;
+    height: auto;
+    filter: invert(1)
+  }
