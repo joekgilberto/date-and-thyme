@@ -65,10 +65,6 @@ export default function Header() {
                     </Badge>
                   </Button>
                 </Link>
-                |
-                <Link to="/test">
-                  <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>test</Button>
-                </Link>
               </div>
             </div>
           </Toolbar>

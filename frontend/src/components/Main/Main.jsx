@@ -10,6 +10,7 @@ import Notifications from '../../pages/Notifications/Notifications';
 import TestApp from '../../pages/tests/TestApp';
 import Error from '../../pages/Error/Error';
 
+//TODO REMOVE TEST ROUTE
 export default function Main() {
 
     return (
