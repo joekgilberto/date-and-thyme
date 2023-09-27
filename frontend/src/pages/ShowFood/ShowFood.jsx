@@ -5,8 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'
+import Paper from '@mui/material/Paper';
 
 import EditFood from '../../components/EditFood/EditFood';
+import ShowNotif from '../../components/ShowNotif/ShowNotif';
 
 export default function ShowFood() {
 
@@ -19,10 +21,12 @@ export default function ShowFood() {
     await foodItemServices.getFoodItem(id).then((res) => {
       setFoodItem(res)
     })
+      .catch((err) => console.log(err))
 
     await notifServices.getNotif(id).then((res) => {
       setNotif(res)
     })
+      .catch((err) => console.log(err))
   }
 
   useEffect(() => {
@@ -35,19 +39,21 @@ export default function ShowFood() {
 
   return (
     <div className='ShowFood'>
-      {foodItem && notif ? (
-        <>
-          <div className='show-food-item'>
-            <h4>{foodItem.name} {foodItem.quantity > 1 ? `(${foodItem.quantity})` : null}</h4>
-            <p>Bought: {foodItem.purchase_date}</p>
-            <p>Expires: {foodItem.expiration_date}</p>
-          </div>
-          <EditFood foodItem={foodItem} />
-          <div className='show-notification'>
-          <p>{foodItem && notif ? `Your ${notif.food_item_name.toLowerCase()} has ${notif.days_left>0?notif.days_left:'0'} day${notif.days_left!==1?'s':''} left.` : null}</p>
-          </div>
-        </>
-      ) : null}
+      <Paper elevation={3} style={{ padding: '20px' }}>
+        {foodItem && notif ? (
+          <>
+            <div className='show-food-item'>
+              <h2>{foodItem.name} {foodItem.quantity > 1 ? `(${foodItem.quantity})` : null}</h2>
+              <p>Bought: {foodItem.purchase_date}</p>
+              <p className='show-exp'>Expires: {foodItem.expiration_date}</p>
+            </div>
+            <EditFood foodItem={foodItem} />
+            <div className='show-notif'>
+              <ShowNotif notif={notif} foodItem={foodItem} />
+            </div>
+          </>
+        ) : null}
+      </Paper>
 
     </div>
   );

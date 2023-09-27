@@ -32,9 +32,12 @@ export default function App() {
     await foodItemServices.getAllFoodItems().then((res) => {
       setFoodItems(res)
     })
+    .catch((err)=>console.log(err))
+
     await notifServices.getAllNotifs().then((res) => {
       setNotifs(res)
     })
+    .catch((err)=>console.log(err))
   }
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function App() {
 
   useEffect(() => {
     handleRequest()
-    if (foodItems){
+    if (foodItems?.length){
       tools.updateAllDaysLeft(foodItems)
     }
     

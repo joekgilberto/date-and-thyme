@@ -37,25 +37,39 @@ footer {
   text-align: center;
 }
 
-.d-t{
+.d-t {
   color: #1976d2;
   font-family: 'Mooli', sans-serif;
 }
 
 @keyframes rise {
-  0%{
-      transform: translateY(0);
+  0% {
+    transform: translateY(0);
   }
-  100%{
-      transform: translateY(-5px);
+
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: translateY(-5px);
   }
 }
 
 @keyframes scroll {
-  0%{
-      transform: translateY(-50%);
+  0% {
+    transform: translateY(-50%);
   }
-  100%{
-      transform: translateY(0%);
+
+  100% {
+    transform: translateY(0%);
   }
 }

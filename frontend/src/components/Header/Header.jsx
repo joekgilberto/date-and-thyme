@@ -25,6 +25,7 @@ export default function Header() {
     await tools.unreadNotifs().then((res) => {
       setNotifNum(res)
     })
+    .catch((err)=>console.log(err))
   }
   //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
   React.useEffect(() => {

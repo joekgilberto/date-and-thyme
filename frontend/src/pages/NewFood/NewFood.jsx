@@ -41,7 +41,7 @@ export default function NewFood() {
         <BackgroundText />
       </div>
       <div className='new-food-card'>
-        <Paper style={{ padding: '20px' }}>
+        <Paper style={{ padding: '40px 20px', backgroundColor: '' }}>
           <form className="new" onSubmit={handleSubmit}>
             <h1>Add Groceries</h1>
             <label>Grocery
@@ -53,7 +53,7 @@ export default function NewFood() {
             <label>Expiration Date
               <input type="date" name="expiration_date" onChange={handleChange} value={formData.expiration_date} required />
             </label>
-            <Button size="large" style={{ ...Mooli, fontSize: '22px' }}>add to fridge</Button>
+            <Button size="large" variant='contained' style={{ ...Mooli, fontSize: '22px' }}>add to fridge</Button>
           </form>
         </Paper>
       </div>

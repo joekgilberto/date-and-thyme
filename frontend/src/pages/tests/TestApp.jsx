@@ -60,7 +60,8 @@ export default function TestApp() {
     // if new post to submit
     axios
       .post("http://localhost:8000/api/food-items/", formData)
-      .then((res) => handleNewNotification(res.data));
+      .then((res) => handleNewNotification(res.data))
+      .catch((err)=>console.log(err));
 
     setFormData(initState)
   };
@@ -68,7 +69,8 @@ export default function TestApp() {
   async function handleDelete(item) {
     axios
       .delete(`http://localhost:8000/api/food-items/${item.pk}/`)
-      .then((res) => handleBoth());
+      .then((res) => handleBoth())
+      .catch((err)=>console.log(err));
   };
 
 

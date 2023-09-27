@@ -17,7 +17,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };
@@ -29,11 +28,6 @@ export default function ConfirmDelete({ foodItem }) {
     const navigate = useNavigate()
     const { toggle, setToggle, Mooli, OpenSans } = React.useContext(FridgeContext);
 
-    const textStyle = {
-        ...Mooli,
-        color: '#ff0000'
-    }
-
     async function handleDelete() {
         await foodItemServices.destroyFoodItem(foodItem.pk).then(() => setToggle(!toggle))
         navigate('/fridge')
@@ -41,7 +35,7 @@ export default function ConfirmDelete({ foodItem }) {
 
     return (
         <div>
-            <Button onClick={handleOpen} style={textStyle}>Delete</Button>
+            <Button onClick={handleOpen} variant='outlined' style={{...Mooli, border: '1px solid #ff0000', color: '#ff0000'}}>Delete</Button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -63,7 +57,7 @@ export default function ConfirmDelete({ foodItem }) {
                         <Typography id="transition-modal-title" variant="p" component="p" style={{...OpenSans, padding: '20px 0'}}>
                             Are you sure you want to delete your {foodItem.name}?
                         </Typography>
-                        <Button size='large' onClick={handleDelete} style={textStyle}>Delete</Button>
+                        <Button size='large' variant='cointained' onClick={handleDelete} style={{...Mooli, backgroundColor: '#ff0000', color:"#fff", marginRight:'10px'}}>Delete</Button>
                         <Button size="large"onClick={handleClose} style={Mooli}>Cancel</Button>
                     </Box>
                 </Fade>

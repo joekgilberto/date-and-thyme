@@ -34,7 +34,8 @@ export default function TestEdit({ handleBoth, foodItem }) {
         // if old post to edit and submit
         axios
             .put(`http://localhost:8000/api/food-items/${foodItem.pk}/`, editFormData)
-            .then((res) => { handleFindNotification(res.data) });
+            .then((res) => { handleFindNotification(res.data) })
+            .catch((err)=>console.log(err));
     }
 
     function handleChange(e) {
