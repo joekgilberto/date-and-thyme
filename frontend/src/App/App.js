@@ -17,13 +17,27 @@ export default function App() {
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
 
+  const Mooli ={
+    fontFamily: '"Mooli", sans-serif',
+    textTransform: 'lowercase'
+  }
+
+  const OpenSans ={
+    fontFamily: '"Open Sans", sans-serif'
+  }
+
+  
+
   async function handleRequest() {
     await foodItemServices.getAllFoodItems().then((res) => {
       setFoodItems(res)
     })
+    .catch((err)=>console.log(err))
+
     await notifServices.getAllNotifs().then((res) => {
       setNotifs(res)
     })
+    .catch((err)=>console.log(err))
   }
 
   useEffect(() => {
@@ -32,7 +46,7 @@ export default function App() {
 
   useEffect(() => {
     handleRequest()
-    if (foodItems){
+    if (foodItems?.length){
       tools.updateAllDaysLeft(foodItems)
     }
     
@@ -47,7 +61,9 @@ export default function App() {
           notifs: notifs,
           setNotifs: setNotifs,
           toggle: toggle,
-          setToggle: setToggle
+          setToggle: setToggle,
+          Mooli: Mooli,
+          OpenSans: OpenSans
         }}
       >
         <Header />

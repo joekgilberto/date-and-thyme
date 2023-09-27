@@ -4,7 +4,31 @@ header{
     align-items: center;
 }
 
-nav{
+.header-logo{
     display: flex;
-    gap: 20px;
+    justify-self: center;
+    align-items: center;
 }
+
+.header-spreader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-buttons{
+    display: flex;
+    align-items: center;
+}
+
+.header-spreader a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.thyme {
+    width: 65px;
+    height: auto;
+    filter: invert(1)
+  }

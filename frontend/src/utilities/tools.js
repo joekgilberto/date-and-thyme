@@ -45,6 +45,7 @@ export async function unreadNotifs() {
             }
         }
     })
+    .catch((err)=>console.log(err))
 
     return unread
 }

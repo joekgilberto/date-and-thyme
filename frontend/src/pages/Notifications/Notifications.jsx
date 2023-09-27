@@ -1,9 +1,12 @@
 import './Notifications.css';
 
-import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { FridgeContext } from "../../data";
 import * as notifServices from '../../utilities/notif-services'
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Notif from '../../components/Notif/Notif';
 
 export default function Notifications() {
 
@@ -19,21 +22,14 @@ export default function Notifications() {
 
     return (
         <div className='Notifications'>
-            {notifs ? notifs.map((notif, idx) => {
-                return (notif.days_left < 4 ?
-                    <div key={idx}>
-                        <p onClick={() => handleClick(notif)}>{notif.read ? 'READ: ' : 'NEW: '} {notif.days_left > 2 ? 'REMINDER' : notif.days_left > 0 ? 'ALERT' : 'EXPIRED'}</p>
-                        <Link to={`/fridge/${notif.food_item}`}>
-                            {notif.days_left > 0 ? (
-                                <p>Your {notif.food_item_name} has {notif.days_left} day{notif.days_left !== 1 ? 's' : ''} left.</p>
-                            ) : (
-                                <p>Your {notif.food_item_name} has expired.</p>
-                            )}
-                        </Link>
-                        <hr />
-                    </div> : null
-                )
-            }) : null}
+            <h1>Notifications</h1>
+            <Paper>
+                <Stack sx={{ width: '100%', padding:'20px' }} spacing={2}>
+                    {notifs?.length ? notifs.map((notif, idx) => {
+                        return <Notif notif={notif} />
+                    }) : null}
+                </Stack>
+            </Paper>
         </div>
     );
 }

@@ -1,0 +1,20 @@
+.Fridge h1{
+    margin: 20px;
+}
+
+.Fridge a{
+    text-decoration: none;
+    color: #000;
+}
+
+.Fridge a h3{
+    color: #1976d2;
+}
+
+.Fridge a p{
+    color: #717171;
+}
+
+.Fridge>div:hover{
+    animation: rise .5s forwards;
+}

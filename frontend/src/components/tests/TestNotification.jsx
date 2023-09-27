@@ -9,7 +9,8 @@ export default function TestNotification({ notification,handleBoth }) {
     async function handleRequest() {
         axios
             .get(`http://localhost:8000/api/food-items/${notification.food_item}/`)
-            .then((res) => setFoodItem(res.data));
+            .then((res) => setFoodItem(res.data))
+            .catch((err)=>console.log(err));
     }
 
     async function handleClick(){

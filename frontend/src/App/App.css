@@ -1,17 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-.App{
-  padding: 20px;
+.App {
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
 }
 
-h1,h2,h3,h4,h5,h6,button{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
   font-family: 'Mooli', sans-serif;
   text-transform: lowercase;
 }
 
-input{
+input {
   font-family: 'Open Sans', sans-serif;
+}
 
+main {
+  flex: 1 0 auto;
+  padding: 20px;
+}
+
+footer {
+  color: #1976d2;
+  font-family: 'Mooli', sans-serif;
+  padding: 0 0 10px 0;
+  text-align: center;
+}
+
+.d-t {
+  color: #1976d2;
+  font-family: 'Mooli', sans-serif;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
 }
