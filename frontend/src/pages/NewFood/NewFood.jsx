@@ -8,6 +8,7 @@ import * as tools from '../../utilities/food-services'
 
 import BackgroundText from '../../components/BackgroundText/BackgroundText';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const initState = {
   name: "",
@@ -17,8 +18,7 @@ const initState = {
 
 export default function NewFood() {
   const navigate = useNavigate()
-  const { toggle, setToggle } = useContext(FridgeContext);
-
+  const { toggle, setToggle, Mooli } = useContext(FridgeContext);
   const [formData, setFormData] = useState(initState);
 
   function handleChange(e) {
@@ -53,7 +53,7 @@ export default function NewFood() {
             <label>Expiration Date
               <input type="date" name="expiration_date" onChange={handleChange} value={formData.expiration_date} required />
             </label>
-            <button type="submit">Add to Fridge</button>
+            <Button size="large" style={{ ...Mooli, fontSize: '22px' }}>add to fridge</Button>
           </form>
         </Paper>
       </div>
