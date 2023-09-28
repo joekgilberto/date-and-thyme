@@ -3,6 +3,13 @@ from rest_framework import serializers
 
 # import the todo data model
 from .models import FoodItem, Notification
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username','password')
 
 # create a serializer class
 class FoodItemSerializer(serializers.ModelSerializer):
