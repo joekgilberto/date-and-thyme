@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as foodItemServices from '../../utilities/food-services'
 import { FridgeContext } from "../../data";
+import * as foodItemServices from '../../utilities/food-services'
+import { getUserToken } from '../../utilities/auth-token';
 
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -9,7 +10,6 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { getUserToken } from '../../utilities/auth-token';
 
 const style = {
     position: 'absolute',
@@ -23,11 +23,11 @@ const style = {
 };
 
 export default function ConfirmDelete({ foodItem }) {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate()
-    const { toggle, setToggle, Mooli, OpenSans } = React.useContext(FridgeContext);
+    const { toggle, setToggle, Mooli, OpenSans } = useContext(FridgeContext);
 
     async function handleDelete() {
         if (getUserToken()) {

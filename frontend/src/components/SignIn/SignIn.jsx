@@ -1,10 +1,11 @@
 import './SignIn.css';
 
 import { useState, useContext } from 'react';
-import * as authServices from '../../utilities/auth-services'
-import { FridgeContext } from "../../data";
-import { setUserToken, setUsername } from '../../utilities/auth-token'
 import { useNavigate } from 'react-router-dom';
+import { FridgeContext } from "../../data";
+import * as authServices from '../../utilities/auth-services'
+import { setUserToken, setUsername } from '../../utilities/auth-token'
+
 import Button from '@mui/material/Button';
 
 export default function SignIn({ handleClick }) {

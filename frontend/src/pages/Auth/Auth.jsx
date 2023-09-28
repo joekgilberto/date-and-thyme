@@ -2,15 +2,12 @@ import './Auth.css';
 
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserToken } from '../../utilities/auth-token'
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import { FridgeContext } from "../../data";
+import { getUserToken } from '../../utilities/auth-token'
 
-
-import BackgroundText from '../../components/BackgroundText/BackgroundText';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
+import Paper from '@mui/material/Paper';
 
 export default function Auth() {
 

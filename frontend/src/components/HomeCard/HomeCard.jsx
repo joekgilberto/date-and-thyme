@@ -1,20 +1,22 @@
 import "./HomeCard.css"
-import * as React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import { FridgeContext } from "../../data";
 import { getUserToken, getUsername } from '../../utilities/auth-token';
 
-export default function HomeCard() {
-    const [token, setToken] = React.useState(null)
-    const { Mooli, OpenSans, toggle } = React.useContext(FridgeContext);
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
-    React.useEffect(() => {
+export default function HomeCard() {
+    
+    const { Mooli, OpenSans, toggle } = useContext(FridgeContext);
+    const [token, setToken] = useState(null)
+
+    useEffect(() => {
         setToken(getUserToken())
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setToken(getUserToken())
     }, [toggle, getUserToken()])
 

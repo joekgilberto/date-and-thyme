@@ -1,6 +1,7 @@
 import './FoodItem.css'
 
 import { Link } from 'react-router-dom';
+
 import Paper from '@mui/material/Paper';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 

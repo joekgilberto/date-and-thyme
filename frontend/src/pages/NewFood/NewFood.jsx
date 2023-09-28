@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
+import { getUserToken } from '../../utilities/auth-token';
 
 import BackgroundText from '../../components/BackgroundText/BackgroundText';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { getUserToken } from '../../utilities/auth-token';
 
 const initState = {
   name: "",
@@ -46,7 +46,7 @@ export default function NewFood() {
       <div className='new-food-card'>
         <Paper style={{ padding: '40px 20px', backgroundColor: '' }}>
           <form className="new">
-            <div className='add-header'>
+            <div className='new-header'>
               <h1>Add Groceries</h1>
               <h1 className='cart'>🛒</h1>
             </div>

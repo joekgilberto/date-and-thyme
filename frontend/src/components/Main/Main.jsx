@@ -8,12 +8,9 @@ import NewFood from '../../pages/NewFood/NewFood';
 import ShowFood from '../../pages/ShowFood/ShowFood';
 import Notifications from '../../pages/Notifications/Notifications';
 import Auth from '../../pages/Auth/Auth';
-import TestApp from '../../pages/tests/TestApp';
 import Error from '../../pages/Error/Error';
-
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
-//TODO REMOVE TEST ROUTE
 export default function Main() {
 
     return (
@@ -25,7 +22,6 @@ export default function Main() {
                 <Route path="/fridge/:id" element={<PrivateRoute><ShowFood /></PrivateRoute>} />
                 <Route path="/feed" element={<PrivateRoute><Notifications /></PrivateRoute>} />
                 <Route path="/auth" element={<Auth />} />
-                <Route path="/test" element={<TestApp />} />
                 <Route path={"/*"} element={<Error />} />
             </Routes>
         </main>

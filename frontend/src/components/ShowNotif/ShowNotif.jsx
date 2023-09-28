@@ -1,16 +1,16 @@
 import './ShowNotif.css'
 
-import { Link } from 'react-router-dom';
-import * as React from 'react';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import { useContext } from 'react';
 import { FridgeContext } from "../../data";
 import * as notifServices from '../../utilities/notif-services'
 import { getUserToken } from '../../utilities/auth-token';
 
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 export default function ShowNotif({ notif, foodItem }) {
 
-    const { toggle, setToggle } = React.useContext(FridgeContext);
+    const { toggle, setToggle } = useContext(FridgeContext);
 
     async function handleClick(notif) {
         if (getUserToken()) {

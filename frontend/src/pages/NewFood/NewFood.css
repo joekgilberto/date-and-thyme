@@ -21,6 +21,16 @@
     width: 100%;
 }
 
+.new-header{
+    display: flex;
+    gap: 20px;
+}
+
+.cart{
+    transform: translateX(100px);
+    animation: 1s roll-in forwards;
+}
+
 .NewFood form{
     width: 100%;
     height: 100%;
@@ -58,16 +68,6 @@
     animation: rise .5s forwards;
 }
 
-.add-header{
-    display: flex;
-    gap: 20px;
-}
-
-.cart{
-    transform: translateX(100px);
-    animation: 1s roll-in forwards;
-
-}
 @keyframes roll-in {
     0%{
         transform: translateX(50px);

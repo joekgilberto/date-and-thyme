@@ -62,18 +62,3 @@ export async function update(id,data) {
         .catch((err) => console.log(err));
 
 };
-
-export async function find(id) {
-    const config={
-        headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
-        }
-    }
-    return axios
-        .get(`${QUERY_URL}${id}`,config)
-        .then((res) => {
-            return res.data
-        })
-        .catch((err) => console.log(err));
-
-};

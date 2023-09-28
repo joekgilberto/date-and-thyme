@@ -1,8 +1,11 @@
 import './Header.css'
 
-import * as React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { FridgeContext } from "../../data";
 import * as tools from '../../utilities/tools'
+import { getUserToken, clearUserToken, clearUsername } from '../../utilities/auth-token';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,18 +13,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import Badge from '@mui/material/Badge';
-import { FridgeContext } from "../../data";
-import { getUserToken, clearUserToken, clearUsername } from '../../utilities/auth-token';
-
-const style = {
-  width: '95%',
-}
 
 
 export default function Header() {
-  const { setFoodItems, setNotifs, toggle, setToggle, Mooli } = React.useContext(FridgeContext);
-  const [notifNum, setNotifNum] = React.useState(null)
-  const [token, setToken] = React.useState(null)
+  const { setFoodItems, setNotifs, toggle, setToggle, Mooli } = useContext(FridgeContext);
+  const [notifNum, setNotifNum] = useState(null)
+  const [token, setToken] = useState(null)
 
   async function handleUnread() {
     if (getUserToken()) {
@@ -39,13 +36,13 @@ export default function Header() {
     setNotifs(null)
     setToggle(!toggle)
   }
-  //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
-  React.useEffect(() => {
+
+  useEffect(() => {
     setToken(getUserToken())
     handleUnread()
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setToken(getUserToken())
     handleUnread()
   }, [toggle, getUserToken()])
@@ -55,7 +52,7 @@ export default function Header() {
     <header>
       <Box sx={{ flexGrow: 1 }} >
         <AppBar position="static">
-          <Toolbar style={style}>
+          <Toolbar style={{width: '99%'}}>
             <div className='header-spreader'>
               <div className='header-logo'>
                 <img className='thyme' src={require('../../assets/thyme.png')} />

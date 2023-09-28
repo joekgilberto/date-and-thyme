@@ -5,11 +5,20 @@ import { FridgeContext } from '../data';
 import * as foodItemServices from '../utilities/food-services'
 import * as notifServices from '../utilities/notif-services'
 import * as tools from '../utilities/tools'
+import { getUserToken } from '../utilities/auth-token';
 
 import Header from '../components/Header/Header';
 import Main from '../components/Main/Main';
 import Footer from '../components/Footer/Footer';
-import { getUserToken } from '../utilities/auth-token';
+
+const Mooli = {
+  fontFamily: '"Mooli", sans-serif',
+  textTransform: 'lowercase'
+}
+
+const OpenSans = {
+  fontFamily: '"Open Sans", sans-serif'
+}
 
 export default function App() {
 
@@ -17,17 +26,6 @@ export default function App() {
   const [foodItems, setFoodItems] = useState(null);
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
-
-  const Mooli = {
-    fontFamily: '"Mooli", sans-serif',
-    textTransform: 'lowercase'
-  }
-
-  const OpenSans = {
-    fontFamily: '"Open Sans", sans-serif'
-  }
-
-
 
   async function handleRequest() {
     if (getUserToken()) {
