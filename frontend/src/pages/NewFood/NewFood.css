@@ -57,3 +57,22 @@
     box-shadow: 2.5px 2.5px 2.5px #00000030;
     animation: rise .5s forwards;
 }
+
+.add-header{
+    display: flex;
+    gap: 20px;
+}
+
+.cart{
+    transform: translateX(100px);
+    animation: 1s roll-in forwards;
+
+}
+@keyframes roll-in {
+    0%{
+        transform: translateX(50px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}

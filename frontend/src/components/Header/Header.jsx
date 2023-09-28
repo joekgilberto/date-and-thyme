@@ -69,27 +69,27 @@ export default function Header() {
                 {token ? (
                   <>
                     <Link to="/fridge">
-                      <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>fridge</Button>
+                      <Button color="inherit" style={{ ...Mooli, fontSize: '20px', margin: '0 5px' }}>fridge</Button>
                     </Link>
                     |
                     <Link to="/fridge/new">
-                      <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>add groceries</Button>
+                      <Button color="inherit" style={{ ...Mooli, fontSize: '20px', margin: '0 5px' }}>add groceries</Button>
                     </Link>
                     |
                     <Link to="/feed">
-                      <Button color="inherit" style={{ fontSize: '24px', margin: '0 5px' }}>
+                      <Button color="inherit" style={{ fontSize: '20px', margin: '0 5px' }}>
                         <Badge badgeContent={notifNum} color="error">
                           <KitchenIcon />
                         </Badge>
                       </Button>
                     </Link>
                     <Link onClick={handleSignOut} to="/">
-                      <Button style={{ ...Mooli, fontSize: '24px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN OUT</Button>
+                      <Button style={{ ...Mooli, fontSize: '20px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN OUT</Button>
                     </Link>
                   </>
                 ) : (
                   <Link to="/auth">
-                    <Button style={{ ...Mooli, fontSize: '24px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN IN</Button>
+                    <Button style={{ ...Mooli, fontSize: '20px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN IN</Button>
                   </Link>
                 )}
 

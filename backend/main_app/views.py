@@ -66,42 +66,43 @@ class FoodItemDetail(APIView):
     Retrieve, update or delete a snippet instance.
     """
     def get_object(self, pk):
-        try:
-            return FoodItem.objects.get(pk=pk)
-        except FoodItem.DoesNotExist:
-            raise Http404
+        food_item = FoodItem.objects.get(pk=pk)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        
+        if food_item.owner == token[1]:
+            try:
+                return food_item
+            except FoodItem.DoesNotExist:
+                raise Http404
+        
 
     def get(self, request, pk, format=None):
         food_item = self.get_object(pk)
-        serializer = FoodItemSerializer(food_item)
-        return Response(serializer.data)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        
+        if food_item.owner == token[1]:
+        
+            serializer = FoodItemSerializer(food_item)
+            return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         food_item = self.get_object(pk)
-        serializer = FoodItemSerializer(food_item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+
+        if food_item.owner == token[1]:
+            serializer = FoodItemSerializer(food_item, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
         food_item = self.get_object(pk)
-        food_item.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
 
-# class NotificationView(viewsets.ModelViewSet):
-
-# 	# create a serializer class and
-# 	# assign it to the NotificationsSerializer class
-# 	serializer_class = NotificationSerializer
-
-# 	# define a variable and populate it
-# 	# with the Notification list objects
-# 	queryset = Notification.objects.all()
-
-# class NotificationView(viewsets.ModelViewSet):
-#     serializer_class = NotificationSerializer
-#     queryset = Notification.objects.all()
+        if food_item.owner == token[1]:
+            food_item.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 class NotificationList(APIView):
     permission_classes = (IsAuthenticated,)
@@ -128,28 +129,41 @@ class NotificationDetail(APIView):
     Retrieve, update or delete a snippet instance.
     """
     def get_object(self, pk):
-        try:
-            return Notification.objects.get(pk=pk)
-        except Notification.DoesNotExist:
-            raise Http404
+        notif = Notification.objects.get(pk=pk)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+
+        if notif.owner == token[1]:
+            try:
+                return notif
+            except Notification.DoesNotExist:
+                raise Http404
 
     def get(self, request, pk, format=None):
-        notification = self.get_object(pk)
-        serializer = NotificationSerializer(notification)
-        return Response(serializer.data)
+        notif = self.get_object(pk)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+
+        if notif.owner == token[1]:
+            serializer = NotificationSerializer(notif)
+            return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        notification = self.get_object(pk)
-        serializer = NotificationSerializer(notification, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        notif = self.get_object(pk)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+
+        if notif.owner == token[1]:
+            serializer = NotificationSerializer(notif, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        notification = self.get_object(pk)
-        notification.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        notif = self.get_object(pk)
+        token = self.request.META.get('HTTP_AUTHORIZATION').split()
+
+        if notif.owner == token[1]:
+            notif.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 class NotificationQueryView(generics.ListAPIView):
     serializer_class = NotificationSerializer

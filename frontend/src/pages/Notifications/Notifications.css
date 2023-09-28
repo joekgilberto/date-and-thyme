@@ -1,3 +1,32 @@
-.Notifications h1{
+.notif-header{
+    display: flex;
     margin: 20px;
+    gap: 10px;
+}
+
+.bell{
+    transform-origin: top;
+    transform: rotate(-15deg);
+    animation: .5s ring forwards;
+}
+
+@keyframes ring {
+    0%{
+        transform: rotate(-15deg);
+    }
+    20%{
+        transform: rotate(15deg);
+    }
+    40%{
+        transform: rotate(-15deg);
+    }
+    60%{
+        transform: rotate(15deg);
+    }
+    80%{
+        transform: rotate(-15deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
 }

@@ -14,7 +14,7 @@ export default function Notifications() {
     const { notifs, toggle, setToggle } = useContext(FridgeContext);
 
     async function handleClick(notif) {
-        if (getUserToken()){
+        if (getUserToken()) {
             await notifServices.updateNotifRead(notif).then(() => setToggle(!toggle))
         }
     }
@@ -25,9 +25,12 @@ export default function Notifications() {
 
     return (
         <div className='Notifications'>
-            <h1>Notifications 🔔</h1>
+            <div className='notif-header'>
+                <h1>Notifications</h1>
+                <h1 className='bell'>🔔</h1>
+            </div>
             <Paper>
-                <Stack sx={{ width: '100%', padding:'20px' }} spacing={2}>
+                <Stack sx={{ width: '100%', padding: '20px' }} spacing={2}>
                     {notifs?.length ? notifs.map((notif, idx) => {
                         return <Notif key={idx} notif={notif} />
                     }) : null}
