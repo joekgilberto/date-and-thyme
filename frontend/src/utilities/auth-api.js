@@ -6,7 +6,6 @@ export async function login(data) {
     return axios
         .post(TOKEN_URL, data)
         .then((res) => {
-            console.log(res.data)
             return res.data
         })
         .catch((err) => console.log(err));
@@ -14,11 +13,9 @@ export async function login(data) {
 };
 
 export async function signUp(data) {
-    console.log("NEW USER",data)
     return axios
         .post(USER_URL, data)
         .then((res) => {
-            console.log(res.data)
             return res.data
         })
         .catch((err) => console.log(err));

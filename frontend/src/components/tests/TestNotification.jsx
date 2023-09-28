@@ -18,7 +18,6 @@ export default function TestNotification({ notification,handleBoth }) {
         axios
             .put(`http://localhost:8000/api/notifications/${notification.food_item}/`, updatedNotification)
             .then((res) => {
-                console.log(res.data)
                 handleBoth()})
             .catch((err) => console.log(err));
     }

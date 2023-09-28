@@ -19,10 +19,8 @@ export default function TestEdit({ handleBoth, foodItem }) {
         const bought = new Date()
         let daysLeft = Math.abs(expire - bought)
         daysLeft = Math.ceil(daysLeft / (1000 * 3600 * 24))
-        console.log(daysLeft)
         const updatedNotification = { ...notification, days_left: daysLeft }
 
-        console.log(updatedNotification)
         axios
             .put(`http://localhost:8000/api/notifications/${notification.food_item}/`, updatedNotification)
             .then((res) => handleBoth())

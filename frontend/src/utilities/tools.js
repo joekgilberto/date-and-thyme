@@ -19,7 +19,6 @@ export function updatedDaysLeft(foodItem) {
     if (Math.abs(expire) < Math.abs(current)){
         daysLeft *= -1
     }
-    console.log(daysLeft)
 
     return daysLeft
 }

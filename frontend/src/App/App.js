@@ -34,13 +34,11 @@ export default function App() {
 
       await foodItemServices.getAllFoodItems().then((res) => {
         setFoodItems(res)
-        console.log('hit!')
       })
         .catch((err) => console.log(err))
 
       await notifServices.getAllNotifs().then((res) => {
         setNotifs(res)
-        console.log('double hit!')
       })
         .catch((err) => console.log(err))
     }

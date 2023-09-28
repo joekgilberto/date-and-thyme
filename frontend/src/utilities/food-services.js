@@ -26,9 +26,7 @@ export async function createFoodItem(data) {
     try {
         const token = getUserToken()
         data = {...data, owner:token}
-        console.log("DATA",data)
         await foodApi.create(data).then((res)=>{
-            console.log(res)
             notifServices.createNotif(res)
             return res
         })

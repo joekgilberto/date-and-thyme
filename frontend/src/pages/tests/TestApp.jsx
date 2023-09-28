@@ -46,7 +46,6 @@ export default function TestApp() {
     const bought = new Date(data.purchase_date)
     let daysLeft = Math.abs(expire - bought)
     daysLeft = daysLeft / (1000 * 3600 * 24)
-    console.log(daysLeft)
     const newNotification = { food_item: data.pk, days_left: daysLeft }
 
     axios

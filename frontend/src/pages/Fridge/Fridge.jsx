@@ -13,7 +13,6 @@ export default function Fridge() {
         setToggle(!toggle)
     }, [])
 
-    console.log(foodItems)
     return (
         <div className='Fridge'>
             <h1>Fridge 🧊</h1>

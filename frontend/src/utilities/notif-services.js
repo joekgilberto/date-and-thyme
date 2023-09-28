@@ -26,7 +26,6 @@ export async function createNotif(foodItemData) {
     try {
         const daysLeft = tools.initDaysLeft(foodItemData)
         const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft, owner: foodItemData.owner}
-        console.log('DATA',data)
         const response = await notifApi.create(data)
         return response
     } catch (err) {
@@ -48,7 +47,6 @@ export async function updateNotifDate(foodItemData) {
     try {
         const daysLeft = tools.updatedDaysLeft(foodItemData)
         const data = {food_item: foodItemData.pk, days_left: daysLeft}
-        console.log('DATA',data)
 
         const response = await notifApi.update(foodItemData.pk,data)
         return response
@@ -61,7 +59,6 @@ export async function updateNotifDate(foodItemData) {
 export async function updateNotifRead(notif) {
     try {
         const data = {...notif, read: !notif.read}
-        console.log('DATA',data)
 
         const response = await notifApi.update(notif.food_item,data)
         return response

@@ -7,7 +7,6 @@ export async function index() {
             Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
-    console.log(config)
     return axios
         .get(BASE_URL,config)
         .then((res) => {
@@ -41,7 +40,6 @@ export async function create(data) {
     return axios
         .post(BASE_URL,data,config)
         .then((res) => {
-            console.log(res.data)
             return res.data
         })
         .catch((err) => console.log(err));
