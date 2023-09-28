@@ -110,6 +110,8 @@ class NotificationList(APIView):
     """
     def get(self, request, format=None):
         notification = Notification.objects.all()
+        token = request.META.get('HTTP_AUTHORIZATION').split()
+        notification = notification.filter(owner=token[1])
         serializer = NotificationSerializer(notification, many=True)
         return Response(serializer.data)
 
