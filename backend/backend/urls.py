@@ -42,7 +42,7 @@ urlpatterns = [
     path('food-items/<int:pk>/', views.FoodItemDetail.as_view()),
     path('notifications/', views.NotificationList.as_view()),
     path('notifications/<int:pk>/', views.NotificationDetail.as_view()),
-    path('user/', views.UserList.as_view()),
+    path('user/', views.CreateUser.as_view()),
     path('query/', views.NotificationQueryView.as_view(), name="notifications"),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- And here
 

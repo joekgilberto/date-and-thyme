@@ -9,3 +9,16 @@ export async function login(data) {
         console.log(err)
     }
 }
+
+export async function signUp(data) {
+    try {
+        return await authAPI.signUp(data).then((res)=>{
+            authAPI.login(res).then((token)=>{
+                return token
+            })
+        })
+        
+    } catch (err) {
+        console.log(err)
+    }
+}
