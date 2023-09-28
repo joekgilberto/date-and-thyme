@@ -46,8 +46,14 @@ export async function updateNotif(id,data) {
 export async function updateNotifDate(foodItemData) {
     try {
         return await getNotif(foodItemData.pk).then(async (notif)=>{
+            let read = notif.read
             const daysLeft = tools.updatedDaysLeft(foodItemData)
-            const data = {...notif, food_item: foodItemData.pk, days_left: daysLeft}
+
+            if(notif.days_left !== daysLeft){
+                read = false
+            }
+
+            const data = {...notif, food_item: foodItemData.pk, days_left: daysLeft, read: read}
             return await notifApi.update(foodItemData.pk,data).then((res)=>{
                 return res
             })
