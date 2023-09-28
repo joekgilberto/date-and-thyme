@@ -1,33 +1,14 @@
-from django.shortcuts import render
-
-# import view sets from the REST framework
-from rest_framework import viewsets, generics
-from rest_framework.permissions import IsAuthenticated  # <-- Here
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.http import Http404
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-
-
-# import the FoodItemSerializer,NotificationSerializer from the serializer file
 from .serializers import FoodItemSerializer,NotificationSerializer,UserSerializer
-
-# import the FoodItem,Notification model from the models file
 from .models import FoodItem,Notification
-# create a class for the FoodItem model viewsets
-# class FoodItemView(viewsets.ModelViewSet):
 
-# 	# create a serializer class and
-# 	# assign it to the FoodItemSerializer class
-# 	serializer_class = FoodItemSerializer
-
-# 	# define a variable and populate it
-# 	# with the FoodItem list objects
-# 	queryset = FoodItem.objects.all()
 class CreateUser(APIView):
-
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -42,9 +23,6 @@ class CreateUser(APIView):
 class FoodItemList(APIView):
     permission_classes = (IsAuthenticated,)             # <-- And here
 
-    """
-    List all snippets, or create a new snippet.
-    """
     def get(self, request, format=None):
         food_items = FoodItem.objects.all()
         token = request.META.get('HTTP_AUTHORIZATION').split()
@@ -62,9 +40,6 @@ class FoodItemList(APIView):
 class FoodItemDetail(APIView):
     permission_classes = (IsAuthenticated,)             # <-- And here
 
-    """
-    Retrieve, update or delete a snippet instance.
-    """
     def get_object(self, pk):
         food_item = FoodItem.objects.get(pk=pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
@@ -106,9 +81,7 @@ class FoodItemDetail(APIView):
 
 class NotificationList(APIView):
     permission_classes = (IsAuthenticated,)
-    """
-    List all snippets, or create a new snippet.
-    """
+
     def get(self, request, format=None):
         notification = Notification.objects.all()
         token = request.META.get('HTTP_AUTHORIZATION').split()
@@ -125,9 +98,7 @@ class NotificationList(APIView):
 
 class NotificationDetail(APIView):
     permission_classes = (IsAuthenticated,)
-    """
-    Retrieve, update or delete a snippet instance.
-    """
+
     def get_object(self, pk):
         notif = Notification.objects.get(pk=pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
@@ -164,17 +135,3 @@ class NotificationDetail(APIView):
         if notif.owner == token[1]:
             notif.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-
-class NotificationQueryView(generics.ListAPIView):
-    serializer_class = NotificationSerializer
-
-    def get_queryset(self):
-        """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
-        """
-        queryset = Notification.objects.all()
-        food = self.request.query_params.get('food')
-        if food is not None:
-            queryset = queryset.filter(food_item=food)
-        return queryset
