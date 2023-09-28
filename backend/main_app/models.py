@@ -7,7 +7,8 @@ class FoodItem(models.Model):
   purchase_date = models.DateField(default=date.today)
   expiration_date = models.DateField()
   quantity = models.IntegerField()
-
+  owner = models.CharField()
+  
   def __str__(self):
     return self.name
 

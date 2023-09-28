@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { FridgeContext } from "../../data";
-import * as tools from '../../utilities/food-services'
+import * as foodItemServices from '../../utilities/food-services'
 
 import BackgroundText from '../../components/BackgroundText/BackgroundText';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { getUserToken } from '../../utilities/auth-token';
 
 const initState = {
   name: "",
@@ -29,10 +30,12 @@ export default function NewFood() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    tools.createFoodItem(formData).then(() => {
-      setToggle(!toggle)
-      navigate('/fridge')
-    })
+    if (getUserToken()) {
+      foodItemServices.createFoodItem(formData).then(() => {
+        setToggle(!toggle)
+        navigate('/fridge')
+      })
+    }
   };
 
   return (

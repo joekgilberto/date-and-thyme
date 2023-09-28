@@ -9,6 +9,7 @@ import * as tools from '../utilities/tools'
 import Header from '../components/Header/Header';
 import Main from '../components/Main/Main';
 import Footer from '../components/Footer/Footer';
+import { getUserToken } from '../utilities/auth-token';
 
 export default function App() {
 
@@ -18,27 +19,29 @@ export default function App() {
   const [toggle, setToggle] = useState(false)
   const [username, setUsername] = useState(null)
 
-  const Mooli ={
+  const Mooli = {
     fontFamily: '"Mooli", sans-serif',
     textTransform: 'lowercase'
   }
 
-  const OpenSans ={
+  const OpenSans = {
     fontFamily: '"Open Sans", sans-serif'
   }
 
-  
+
 
   async function handleRequest() {
-    await foodItemServices.getAllFoodItems().then((res) => {
-      setFoodItems(res)
-    })
-    .catch((err)=>console.log(err))
+    if (getUserToken()) {
+      await foodItemServices.getAllFoodItems().then((res) => {
+        setFoodItems(res)
+      })
+        .catch((err) => console.log(err))
 
-    await notifServices.getAllNotifs().then((res) => {
-      setNotifs(res)
-    })
-    .catch((err)=>console.log(err))
+      await notifServices.getAllNotifs().then((res) => {
+        setNotifs(res)
+      })
+        .catch((err) => console.log(err))
+    }
   }
 
   useEffect(() => {
@@ -47,10 +50,11 @@ export default function App() {
 
   useEffect(() => {
     handleRequest()
-    if (foodItems?.length){
-      tools.updateAllDaysLeft(foodItems)
+    if (getUserToken()) {
+      if (foodItems?.length) {
+        tools.updateAllDaysLeft(foodItems)
+      }
     }
-    
   }, [toggle])
 
   return (

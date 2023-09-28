@@ -9,6 +9,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { getUserToken } from '../../utilities/auth-token';
 
 const style = {
     position: 'absolute',
@@ -29,13 +30,15 @@ export default function ConfirmDelete({ foodItem }) {
     const { toggle, setToggle, Mooli, OpenSans } = React.useContext(FridgeContext);
 
     async function handleDelete() {
-        await foodItemServices.destroyFoodItem(foodItem.pk).then(() => setToggle(!toggle))
-        navigate('/fridge')
+        if (getUserToken()) {
+            await foodItemServices.destroyFoodItem(foodItem.pk).then(() => setToggle(!toggle))
+            navigate('/fridge')
+        }
     }
 
     return (
         <div>
-            <Button onClick={handleOpen} variant='outlined' style={{...Mooli, border: '1px solid #ff0000', color: '#ff0000'}}>Delete</Button>
+            <Button onClick={handleOpen} variant='outlined' style={{ ...Mooli, border: '1px solid #ff0000', color: '#ff0000' }}>Delete</Button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -54,11 +57,11 @@ export default function ConfirmDelete({ foodItem }) {
                         <Typography id="transition-modal-title" variant="h4" component="h4" style={OpenSans}>
                             wait!
                         </Typography>
-                        <Typography id="transition-modal-title" variant="p" component="p" style={{...OpenSans, padding: '20px 0'}}>
+                        <Typography id="transition-modal-title" variant="p" component="p" style={{ ...OpenSans, padding: '20px 0' }}>
                             Are you sure you want to delete your {foodItem.name}?
                         </Typography>
-                        <Button size='large' variant='cointained' onClick={handleDelete} style={{...Mooli, backgroundColor: '#ff0000', color:"#fff", marginRight:'10px'}}>Delete</Button>
-                        <Button size="large"onClick={handleClose} style={Mooli}>Cancel</Button>
+                        <Button size='large' variant='cointained' onClick={handleDelete} style={{ ...Mooli, backgroundColor: '#ff0000', color: "#fff", marginRight: '10px' }}>Delete</Button>
+                        <Button size="large" onClick={handleClose} style={Mooli}>Cancel</Button>
                     </Box>
                 </Fade>
             </Modal>

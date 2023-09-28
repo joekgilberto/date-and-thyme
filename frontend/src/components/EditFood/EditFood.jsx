@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
+import { getUserToken } from '../../utilities/auth-token';
 
 export default function EditFood({ foodItem }) {
 
@@ -16,9 +17,11 @@ export default function EditFood({ foodItem }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        setShow(false)
-        // if old post to edit and submit
-        foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(() => setToggle(!toggle))
+        if (getUserToken) {
+            setShow(false)
+            // if old post to edit and submit
+            foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(() => setToggle(!toggle))
+        }
     }
 
     function handleChange(e) {

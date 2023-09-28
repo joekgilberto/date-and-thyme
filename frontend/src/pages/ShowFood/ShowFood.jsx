@@ -6,6 +6,7 @@ import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'
 import Paper from '@mui/material/Paper';
+import { getUserToken } from '../../utilities/auth-token';
 
 import EditFood from '../../components/EditFood/EditFood';
 import ShowNotif from '../../components/ShowNotif/ShowNotif';
@@ -18,15 +19,17 @@ export default function ShowFood() {
   const { id } = useParams()
 
   async function handleRequest() {
-    await foodItemServices.getFoodItem(id).then((res) => {
-      setFoodItem(res)
-    })
-      .catch((err) => console.log(err))
+    if (getUserToken()) {
+      await foodItemServices.getFoodItem(id).then((res) => {
+        setFoodItem(res)
+      })
+        .catch((err) => console.log(err))
 
-    await notifServices.getNotif(id).then((res) => {
-      setNotif(res)
-    })
-      .catch((err) => console.log(err))
+      await notifServices.getNotif(id).then((res) => {
+        setNotif(res)
+      })
+        .catch((err) => console.log(err))
+    }
   }
 
   useEffect(() => {

@@ -24,12 +24,14 @@ export default function Header() {
   const [token, setToken] = React.useState(null)
 
   async function handleUnread() {
-    await tools.unreadNotifs().then((res) => {
-      setNotifNum(res)
-    })
-      .catch((err) => console.log(err))
+    if (getUserToken()) {
+      await tools.unreadNotifs().then((res) => {
+        setNotifNum(res)
+      })
+        .catch((err) => console.log(err))
+    }
   }
-
+  
   async function handleSignOut() {
     clearUserToken()
     setToggle(!toggle)
@@ -37,13 +39,13 @@ export default function Header() {
   }
   //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
   React.useEffect(() => {
-    handleUnread()
     setToken(getUserToken())
+    handleUnread()
   }, [])
 
   React.useEffect(() => {
-    handleUnread()
     setToken(getUserToken())
+    handleUnread()
   }, [toggle, getUserToken()])
 
 
@@ -64,24 +66,24 @@ export default function Header() {
               <div className='header-buttons'>
                 {token ? (
                   <>
-                  <Link to="/fridge">
-                    <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>fridge</Button>
-                  </Link>
-                  |
-                  <Link to="/fridge/new">
-                    <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>add groceries</Button>
-                  </Link>
-                  |
-                <Link to="/feed">
-                  <Button color="inherit" style={{ fontSize: '24px', margin: '0 5px' }}>
-                    <Badge badgeContent={notifNum} color="error">
-                      <KitchenIcon />
-                    </Badge>
-                  </Button>
-                </Link>
-                  <Link onClick={handleSignOut} to="/">
-                    <Button style={{ ...Mooli, fontSize: '24px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN OUT</Button>
-                  </Link>
+                    <Link to="/fridge">
+                      <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>fridge</Button>
+                    </Link>
+                    |
+                    <Link to="/fridge/new">
+                      <Button color="inherit" style={{ ...Mooli, fontSize: '24px', margin: '0 5px' }}>add groceries</Button>
+                    </Link>
+                    |
+                    <Link to="/feed">
+                      <Button color="inherit" style={{ fontSize: '24px', margin: '0 5px' }}>
+                        <Badge badgeContent={notifNum} color="error">
+                          <KitchenIcon />
+                        </Badge>
+                      </Button>
+                    </Link>
+                    <Link onClick={handleSignOut} to="/">
+                      <Button style={{ ...Mooli, fontSize: '24px', margin: '0 5px', backgroundColor: '#fff', color: '#1976d2' }}>SIGN OUT</Button>
+                    </Link>
                   </>
                 ) : (
                   <Link to="/auth">

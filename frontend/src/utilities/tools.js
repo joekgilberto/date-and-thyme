@@ -1,4 +1,3 @@
-import * as foodItemServices from '../utilities/food-services'
 import * as notifServices from '../utilities/notif-services'
 
 export function initDaysLeft(foodItem) {

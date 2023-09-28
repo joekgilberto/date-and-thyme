@@ -7,13 +7,16 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Notif from '../../components/Notif/Notif';
+import { getUserToken } from '../../utilities/auth-token';
 
 export default function Notifications() {
 
     const { notifs, toggle, setToggle } = useContext(FridgeContext);
 
     async function handleClick(notif) {
-        await notifServices.updateNotifRead(notif).then(() => setToggle(!toggle))
+        if (getUserToken()){
+            await notifServices.updateNotifRead(notif).then(() => setToggle(!toggle))
+        }
     }
 
     useEffect(() => {

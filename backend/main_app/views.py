@@ -14,7 +14,6 @@ from .serializers import FoodItemSerializer,NotificationSerializer
 
 # import the FoodItem,Notification model from the models file
 from .models import FoodItem,Notification
-
 # create a class for the FoodItem model viewsets
 # class FoodItemView(viewsets.ModelViewSet):
 
@@ -34,6 +33,8 @@ class FoodItemList(APIView):
     """
     def get(self, request, format=None):
         food_items = FoodItem.objects.all()
+        token = request.META.get('HTTP_AUTHORIZATION').split()
+        food_items = food_items.filter(owner=token[1])
         serializer = FoodItemSerializer(food_items, many=True)
         return Response(serializer.data)
 

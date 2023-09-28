@@ -10,7 +10,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
 	# create a meta class
 	class Meta:
 		model = FoodItem
-		fields = ('pk','name','purchase_date','expiration_date','quantity')
+		fields = ('pk','name','purchase_date','expiration_date','quantity','owner')
 		
 # create a serializer class
 class NotificationSerializer(serializers.ModelSerializer):
