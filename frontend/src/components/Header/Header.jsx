@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import Badge from '@mui/material/Badge';
 import { FridgeContext } from "../../data";
-import { getUserToken, clearUserToken } from '../../utilities/auth-token';
+import { getUserToken, clearUserToken, clearUsername } from '../../utilities/auth-token';
 
 const style = {
   width: '95%',
@@ -19,7 +19,7 @@ const style = {
 
 
 export default function Header() {
-  const { toggle, setToggle, Mooli } = React.useContext(FridgeContext);
+  const { setFoodItems, setNotifs, toggle, setToggle, Mooli } = React.useContext(FridgeContext);
   const [notifNum, setNotifNum] = React.useState(null)
   const [token, setToken] = React.useState(null)
 
@@ -34,8 +34,10 @@ export default function Header() {
   
   async function handleSignOut() {
     clearUserToken()
+    clearUsername()
+    setFoodItems(null)
+    setNotifs(null)
     setToggle(!toggle)
-    console.log(getUserToken())
   }
   //TODO update everytime a notification is added, and maybe every time the date changes?  if not just loaded?
   React.useEffect(() => {

@@ -14,6 +14,7 @@ export async function login(data) {
 };
 
 export async function signUp(data) {
+    console.log("NEW USER",data)
     return axios
         .post(USER_URL, data)
         .then((res) => {

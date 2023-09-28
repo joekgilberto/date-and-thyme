@@ -7,12 +7,13 @@ import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'
 import Paper from '@mui/material/Paper';
 import { getUserToken } from '../../utilities/auth-token';
+import { useNavigate } from 'react-router-dom';
 
 import EditFood from '../../components/EditFood/EditFood';
 import ShowNotif from '../../components/ShowNotif/ShowNotif';
 
 export default function ShowFood() {
-
+  const navigate = useNavigate()
   const { toggle, setToggle } = useContext(FridgeContext);
   const [foodItem, setFoodItem] = useState(null)
   const [notif, setNotif] = useState(null)
@@ -27,6 +28,9 @@ export default function ShowFood() {
 
       await notifServices.getNotif(id).then((res) => {
         setNotif(res)
+        if(res.owner !== getUserToken()){
+          navigate('/')
+        }
       })
         .catch((err) => console.log(err))
     }

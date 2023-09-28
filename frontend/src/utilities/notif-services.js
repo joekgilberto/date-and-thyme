@@ -1,6 +1,6 @@
 import * as notifApi from './notif-api'
-import * as foodApi from './food-api'
 import * as tools from './tools'
+import { getUserToken } from './auth-token';
 
 export async function getAllNotifs() {
     try {
@@ -24,10 +24,8 @@ export async function getNotif(id) {
 
 export async function createNotif(foodItemData) {
     try {
-        console.log(foodItemData)
-        console.log(foodItemData.name)
         const daysLeft = tools.initDaysLeft(foodItemData)
-        const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft}
+        const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft, owner: foodItemData.owner}
         console.log('DATA',data)
         const response = await notifApi.create(data)
         return response

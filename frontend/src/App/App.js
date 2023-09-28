@@ -17,7 +17,6 @@ export default function App() {
   const [foodItems, setFoodItems] = useState(null);
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
-  const [username, setUsername] = useState(null)
 
   const Mooli = {
     fontFamily: '"Mooli", sans-serif',
@@ -32,13 +31,16 @@ export default function App() {
 
   async function handleRequest() {
     if (getUserToken()) {
+
       await foodItemServices.getAllFoodItems().then((res) => {
         setFoodItems(res)
+        console.log('hit!')
       })
         .catch((err) => console.log(err))
 
       await notifServices.getAllNotifs().then((res) => {
         setNotifs(res)
+        console.log('double hit!')
       })
         .catch((err) => console.log(err))
     }
@@ -57,6 +59,15 @@ export default function App() {
     }
   }, [toggle])
 
+  useEffect(() => {
+    handleRequest()
+    if (getUserToken()) {
+      if (foodItems?.length) {
+        tools.updateAllDaysLeft(foodItems)
+      }
+    }
+  }, [getUserToken()])
+
   return (
     <div className='App'>
       <FridgeInfo
@@ -67,8 +78,6 @@ export default function App() {
           setNotifs: setNotifs,
           toggle: toggle,
           setToggle: setToggle,
-          username: username,
-          setUsername: setUsername,
           Mooli: Mooli,
           OpenSans: OpenSans
         }}

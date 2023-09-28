@@ -1,51 +1,35 @@
 import './Auth.css';
 
-import { useState, useContext } from 'react';
-import * as authServices from '../../utilities/auth-services'
-import { FridgeContext } from "../../data";
-import { setUserToken } from '../../utilities/auth-token'
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUserToken } from '../../utilities/auth-token'
 
-const initState = {
-    email: "",
-    username: "",
-    password: "",
-}
+import SignIn from '../../components/SignIn/SignIn';
+import SignUp from '../../components/SignUp/SignUp';
 
 export default function Auth() {
-
-    const navigate = useNavigate()
-
-    const { setUsername, toggle, setToggle } = useContext(FridgeContext);
-    const [formData, setFormData] = useState(initState);
-
-    function handleChange(e) {
-        const updatedData = { ...formData, [e.target.name]: e.target.value }
-        setFormData(updatedData)
+    const initState = {
+        username: "",
+        password: "",
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        await authServices.login(formData).then((res)=>{
-            setUsername(formData.username)
-            setUserToken(res.token)
-            setToggle(!toggle)
+    const navigate = useNavigate()
+    const [signIn, setSignIn] = useState(true)
+
+    useEffect(()=>{
+        if(getUserToken()){
             navigate('/')
-        })
-        .catch((err)=>console.log(err))
-    };
+        }
+    },[])
+
+    function handleClick(){
+        setSignIn(!signIn)
+    }
 
     return (
         <div className='Auth'>
-            <form onSubmit={handleSubmit}>
-                <label>Username
-                    <input type="text" name="username" onChange={handleChange} value={formData.username} required />
-                </label>
-                <label>Password
-                    <input type="text" name="password" onChange={handleChange} value={formData.password} required />
-                </label>
-                <button type='submit'>Submit</button>
-            </form>
+            {signIn?<SignIn initState={initState} />:<SignUp initState={initState} />}
+            {signIn?<button onClick={handleClick}>Sign Up</button>:<button onClick={handleClick}>Sign In</button>}
         </div>
     );
 }

@@ -10,4 +10,16 @@ function clearUserToken(){
     return localStorage.setItem("token", "");
 };
 
-export { getUserToken, setUserToken, clearUserToken };
+function getUsername(){
+    return localStorage.getItem("username");
+};
+
+function setUsername(username){
+    return localStorage.setItem("username", username);
+};
+
+function clearUsername(){
+    return localStorage.setItem("username", "");
+};
+
+export { getUserToken, setUserToken, clearUserToken, getUsername, setUsername, clearUsername };
