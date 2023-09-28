@@ -48,7 +48,6 @@ class FoodItemList(APIView):
     def get(self, request, format=None):
         food_items = FoodItem.objects.all()
         token = request.META.get('HTTP_AUTHORIZATION').split()
-        print(token)
         food_items = food_items.filter(owner=token[1])
         serializer = FoodItemSerializer(food_items, many=True)
         return Response(serializer.data)
