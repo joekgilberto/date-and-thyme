@@ -19,7 +19,7 @@ const initState = {
 
 export default function NewFood() {
   const navigate = useNavigate()
-  const { toggle, setToggle, Mooli } = useContext(FridgeContext);
+  const { handleRefresh,Mooli } = useContext(FridgeContext);
   const [formData, setFormData] = useState(initState);
 
   function handleChange(e) {
@@ -32,7 +32,7 @@ export default function NewFood() {
 
     if (getUserToken()) {
       foodItemServices.createFoodItem(formData).then(() => {
-        setToggle(!toggle)
+        handleRefresh()
         navigate('/fridge')
       })
     }

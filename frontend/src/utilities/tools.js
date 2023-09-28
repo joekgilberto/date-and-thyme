@@ -38,7 +38,7 @@ export async function unreadNotifs() {
 
     await notifServices.getAllNotifs().then((res) => {
         for (let notif of res) {
-            if (!notif.read && notif.days_left < 4) {
+            if (!notif.read && notif.days_left <= 2) {
                 unread++
             }
         }

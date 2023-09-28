@@ -18,7 +18,7 @@ export default function SignUp({ handleClick }) {
 
     const navigate = useNavigate()
 
-    const { toggle, setToggle } = useContext(FridgeContext);
+    const { handleRefresh } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
     const [error, setError] = useState(null);
 
@@ -35,7 +35,7 @@ export default function SignUp({ handleClick }) {
             await authServices.signUp(formData).then((res) => {
                 setUsername(formData.username)
                 setUserToken(res.token)
-                setToggle(!toggle)
+                handleRefresh()
                 setError(null)
                 navigate('/')
             })

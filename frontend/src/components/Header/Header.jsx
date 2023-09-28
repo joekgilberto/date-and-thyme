@@ -16,7 +16,7 @@ import Badge from '@mui/material/Badge';
 
 
 export default function Header() {
-  const { setFoodItems, setNotifs, toggle, setToggle, Mooli } = useContext(FridgeContext);
+  const { handleRefresh, toggle, setFoodItems, setNotifs, Mooli } = useContext(FridgeContext);
   const [notifNum, setNotifNum] = useState(null)
   const [token, setToken] = useState(null)
 
@@ -34,7 +34,7 @@ export default function Header() {
     clearUsername()
     setFoodItems(null)
     setNotifs(null)
-    setToggle(!toggle)
+    handleRefresh()
   }
 
   useEffect(() => {

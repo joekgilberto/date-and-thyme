@@ -27,7 +27,7 @@ export default function App() {
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
 
-  async function handleRequest() {
+  async function handleRefresh() {
     if (getUserToken()) {
 
       await foodItemServices.getAllFoodItems().then((res) => {
@@ -40,23 +40,15 @@ export default function App() {
       })
         .catch((err) => console.log(err))
     }
+    setToggle(!toggle)
   }
 
   useEffect(() => {
-    setToggle(true)
+    handleRefresh()
   }, [])
 
   useEffect(() => {
-    handleRequest()
-    if (getUserToken()) {
-      if (foodItems?.length) {
-        tools.updateAllDaysLeft(foodItems)
-      }
-    }
-  }, [toggle])
-
-  useEffect(() => {
-    handleRequest()
+    handleRefresh()
     if (getUserToken()) {
       if (foodItems?.length) {
         tools.updateAllDaysLeft(foodItems)
@@ -68,12 +60,12 @@ export default function App() {
     <div className='App'>
       <FridgeInfo
         value={{
+          handleRefresh: handleRefresh,
+          toggle,
           foodItems: foodItems,
           setFoodItems: setFoodItems,
           notifs: notifs,
           setNotifs: setNotifs,
-          toggle: toggle,
-          setToggle: setToggle,
           Mooli: Mooli,
           OpenSans: OpenSans
         }}

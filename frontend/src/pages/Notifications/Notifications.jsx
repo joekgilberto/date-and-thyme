@@ -9,10 +9,11 @@ import Stack from '@mui/material/Stack';
 
 export default function Notifications() {
 
-    const { notifs, toggle, setToggle } = useContext(FridgeContext);
+    const { handleRefresh, notifs } = useContext(FridgeContext);
 
     useEffect(() => {
-        setToggle(!toggle)
+        handleRefresh()
+        console.log(notifs)
     }, [])
 
     return (
@@ -24,7 +25,7 @@ export default function Notifications() {
             <Paper>
                 <Stack sx={{ width: '100%', padding: '20px' }} spacing={2}>
                     {notifs?.length ? notifs.map((notif, idx) => {
-                        return <Notif key={idx} notif={notif} />
+                        return (notif.days_left<=5?<Notif key={idx} notif={notif} />: null)
                     }) : null}
                 </Stack>
             </Paper>

@@ -27,11 +27,11 @@ export default function ConfirmDelete({ foodItem }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate()
-    const { toggle, setToggle, Mooli, OpenSans } = useContext(FridgeContext);
+    const { handleRefresh, Mooli, OpenSans } = useContext(FridgeContext);
 
     async function handleDelete() {
         if (getUserToken()) {
-            await foodItemServices.destroyFoodItem(foodItem.pk).then(() => setToggle(!toggle))
+            await foodItemServices.destroyFoodItem(foodItem.pk).then(() => handleRefresh())
             navigate('/fridge')
         }
     }

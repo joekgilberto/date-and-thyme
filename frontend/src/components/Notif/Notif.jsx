@@ -11,11 +11,11 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 export default function Notif({ notif }) {
 
-    const { toggle, setToggle } = useContext(FridgeContext);
+    const { handleRefresh } = useContext(FridgeContext);
 
     async function handleClick(notif) {
         if (getUserToken()) {
-            await notifServices.updateNotifRead(notif).then(() => setToggle(!toggle))
+            await notifServices.updateNotifRead(notif).then(() => handleRefresh())
         }
     }
 

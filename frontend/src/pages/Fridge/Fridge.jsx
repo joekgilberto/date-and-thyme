@@ -7,10 +7,10 @@ import FoodItem from '../../components/FoodItem/FoodItem';
 
 export default function Fridge() {
 
-    const { foodItems, toggle, setToggle } = useContext(FridgeContext);
+    const { handleRefresh, foodItems } = useContext(FridgeContext);
 
     useEffect(() => {
-        setToggle(!toggle)
+        handleRefresh()
     }, [])
 
     return (

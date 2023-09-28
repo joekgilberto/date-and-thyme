@@ -13,10 +13,10 @@ export default function SignIn({ handleClick }) {
         username: "",
         password: "",
     }
-
+    const { handleRefresh } = useContext(FridgeContext)
+    
     const navigate = useNavigate()
 
-    const { toggle, setToggle } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
 
     function handleChange(e) {
@@ -29,7 +29,7 @@ export default function SignIn({ handleClick }) {
         await authServices.login(formData).then((res) => {
             setUsername(formData.username)
             setUserToken(res.token)
-            setToggle(!toggle)
+            handleRefresh()
             navigate('/')
         })
             .catch((err) => console.log(err))

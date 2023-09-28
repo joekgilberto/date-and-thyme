@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 
 export default function EditFood({ foodItem }) {
 
-    const { toggle, setToggle, Mooli } = useContext(FridgeContext);
+    const { handleRefresh, Mooli } = useContext(FridgeContext);
     const [editFormData, setEditFormData] = useState(foodItem);
     const [show, setShow] = useState(false)
 
@@ -20,7 +20,9 @@ export default function EditFood({ foodItem }) {
         e.preventDefault()
         if (getUserToken) {
             setShow(false)
-            foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(() => setToggle(!toggle))
+            foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(async() => {
+                handleRefresh()
+            })
         }
     }
 
