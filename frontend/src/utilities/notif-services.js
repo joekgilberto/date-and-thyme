@@ -1,6 +1,6 @@
 import * as notifApi from './notif-api'
-import * as foodApi from './food-api'
 import * as tools from './tools'
+import { getUserToken } from './auth-token';
 
 export async function getAllNotifs() {
     try {
@@ -24,11 +24,8 @@ export async function getNotif(id) {
 
 export async function createNotif(foodItemData) {
     try {
-        console.log(foodItemData)
-        console.log(foodItemData.name)
         const daysLeft = tools.initDaysLeft(foodItemData)
-        const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft}
-        console.log('DATA',data)
+        const data = {food_item: foodItemData.pk, food_item_name: foodItemData.name, days_left: daysLeft, owner: foodItemData.owner}
         const response = await notifApi.create(data)
         return response
     } catch (err) {
@@ -48,12 +45,13 @@ export async function updateNotif(id,data) {
 
 export async function updateNotifDate(foodItemData) {
     try {
-        const daysLeft = tools.updatedDaysLeft(foodItemData)
-        const data = {food_item: foodItemData.pk, days_left: daysLeft}
-        console.log('DATA',data)
-
-        const response = await notifApi.update(foodItemData.pk,data)
-        return response
+        return await getNotif(foodItemData.pk).then(async (notif)=>{
+            const daysLeft = tools.updatedDaysLeft(foodItemData)
+            const data = {...notif, food_item: foodItemData.pk, days_left: daysLeft}
+            return await notifApi.update(foodItemData.pk,data).then((res)=>{
+                return res
+            })
+        })
 
     } catch (err) {
         return err
@@ -63,7 +61,6 @@ export async function updateNotifDate(foodItemData) {
 export async function updateNotifRead(notif) {
     try {
         const data = {...notif, read: !notif.read}
-        console.log('DATA',data)
 
         const response = await notifApi.update(notif.food_item,data)
         return response

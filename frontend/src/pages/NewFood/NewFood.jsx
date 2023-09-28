@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { FridgeContext } from "../../data";
-import * as tools from '../../utilities/food-services'
+import * as foodItemServices from '../../utilities/food-services'
+import { getUserToken } from '../../utilities/auth-token';
 
 import BackgroundText from '../../components/BackgroundText/BackgroundText';
 import Paper from '@mui/material/Paper';
@@ -18,7 +19,7 @@ const initState = {
 
 export default function NewFood() {
   const navigate = useNavigate()
-  const { toggle, setToggle, Mooli } = useContext(FridgeContext);
+  const { handleRefresh,Mooli } = useContext(FridgeContext);
   const [formData, setFormData] = useState(initState);
 
   function handleChange(e) {
@@ -29,10 +30,12 @@ export default function NewFood() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    tools.createFoodItem(formData).then(() => {
-      setToggle(!toggle)
-      navigate('/fridge')
-    })
+    if (getUserToken()) {
+      foodItemServices.createFoodItem(formData).then(() => {
+        handleRefresh()
+        navigate('/fridge')
+      })
+    }
   };
 
   return (
@@ -42,8 +45,11 @@ export default function NewFood() {
       </div>
       <div className='new-food-card'>
         <Paper style={{ padding: '40px 20px', backgroundColor: '' }}>
-          <form className="new" onSubmit={handleSubmit}>
-            <h1>Add Groceries 🛒</h1>
+          <form className="new">
+            <div className='new-header'>
+              <h1>Add Groceries</h1>
+              <h1 className='cart'>🛒</h1>
+            </div>
             <label>Grocery
               <input type="text" name="name" onChange={handleChange} value={formData.name} required />
             </label>
@@ -53,7 +59,7 @@ export default function NewFood() {
             <label>Expiration Date
               <input type="date" name="expiration_date" onChange={handleChange} value={formData.expiration_date} required />
             </label>
-            <Button size="large" variant='contained' style={{ ...Mooli, fontSize: '22px' }}>add to fridge</Button>
+            <Button size="large" variant='contained' style={{ ...Mooli, fontSize: '22px' }} onClick={handleSubmit}>add to fridge</Button>
           </form>
         </Paper>
       </div>

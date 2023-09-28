@@ -7,3 +7,11 @@ https://git.generalassemb.ly/SEIR-710-EC/Course-Materials/blob/main/03_Resources
 git subtree push --prefix backend heroku main   
 
 https://commons.wikimedia.org/wiki/File:Plant_(67683)_-_The_Noun_Project.svg
+
+https://www.django-rest-framework.org/api-guide/authentication/#setting-the-authentication-scheme
+
+https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html#implementing-the-token-authentication
+
+https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/
+
+https://stackoverflow.com/questions/56701988/how-to-fix-invalid-password-format-or-unknown-hashing-algorithm-in-a-custom-u

@@ -1,4 +1,3 @@
-import * as foodItemServices from '../utilities/food-services'
 import * as notifServices from '../utilities/notif-services'
 
 export function initDaysLeft(foodItem) {
@@ -20,7 +19,6 @@ export function updatedDaysLeft(foodItem) {
     if (Math.abs(expire) < Math.abs(current)){
         daysLeft *= -1
     }
-    console.log(daysLeft)
 
     return daysLeft
 }
@@ -40,7 +38,7 @@ export async function unreadNotifs() {
 
     await notifServices.getAllNotifs().then((res) => {
         for (let notif of res) {
-            if (!notif.read && notif.days_left < 4) {
+            if (!notif.read && notif.days_left <= 2) {
                 unread++
             }
         }

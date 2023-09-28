@@ -1,24 +1,29 @@
 import './EditFood.css'
 
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
+import { getUserToken } from '../../utilities/auth-token';
+
+import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
-import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
 
 export default function EditFood({ foodItem }) {
 
+    const { handleRefresh, Mooli } = useContext(FridgeContext);
     const [editFormData, setEditFormData] = useState(foodItem);
     const [show, setShow] = useState(false)
-    const { toggle, setToggle, Mooli } = useContext(FridgeContext);
 
     async function handleSubmit(e) {
         e.preventDefault()
-        setShow(false)
-        // if old post to edit and submit
-        foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(() => setToggle(!toggle))
+        if (getUserToken) {
+            setShow(false)
+            foodItemServices.updateFoodItem(foodItem.pk, editFormData).then(async() => {
+                handleRefresh()
+            })
+        }
     }
 
     function handleChange(e) {

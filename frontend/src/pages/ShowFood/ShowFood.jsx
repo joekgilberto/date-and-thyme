@@ -1,32 +1,39 @@
 import './ShowFood.css';
 
-import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'
-import Paper from '@mui/material/Paper';
+import { getUserToken } from '../../utilities/auth-token';
 
 import EditFood from '../../components/EditFood/EditFood';
 import ShowNotif from '../../components/ShowNotif/ShowNotif';
+import Paper from '@mui/material/Paper';
 
 export default function ShowFood() {
-
-  const { toggle, setToggle } = useContext(FridgeContext);
+  const navigate = useNavigate()
+  const { toggle } = useContext(FridgeContext);
   const [foodItem, setFoodItem] = useState(null)
   const [notif, setNotif] = useState(null)
   const { id } = useParams()
 
   async function handleRequest() {
-    await foodItemServices.getFoodItem(id).then((res) => {
-      setFoodItem(res)
-    })
-      .catch((err) => console.log(err))
+    if (getUserToken()) {
+      await foodItemServices.getFoodItem(id).then((res) => {
+        setFoodItem(res)
+      })
+        .catch((err) => console.log(err))
 
-    await notifServices.getNotif(id).then((res) => {
-      setNotif(res)
-    })
-      .catch((err) => console.log(err))
+      await notifServices.getNotif(id).then((res) => {
+        setNotif(res)
+        if(res.owner !== getUserToken()){
+          navigate('/')
+        }
+      })
+        .catch((err) => console.log(err))
+    }
   }
 
   useEffect(() => {
@@ -54,7 +61,6 @@ export default function ShowFood() {
           </>
         ) : null}
       </Paper>
-
     </div>
   );
 }

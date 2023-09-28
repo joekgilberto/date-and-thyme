@@ -5,10 +5,20 @@ import { FridgeContext } from '../data';
 import * as foodItemServices from '../utilities/food-services'
 import * as notifServices from '../utilities/notif-services'
 import * as tools from '../utilities/tools'
+import { getUserToken } from '../utilities/auth-token';
 
 import Header from '../components/Header/Header';
 import Main from '../components/Main/Main';
 import Footer from '../components/Footer/Footer';
+
+const Mooli = {
+  fontFamily: '"Mooli", sans-serif',
+  textTransform: 'lowercase'
+}
+
+const OpenSans = {
+  fontFamily: '"Open Sans", sans-serif'
+}
 
 export default function App() {
 
@@ -17,51 +27,45 @@ export default function App() {
   const [notifs, setNotifs] = useState(null)
   const [toggle, setToggle] = useState(false)
 
-  const Mooli ={
-    fontFamily: '"Mooli", sans-serif',
-    textTransform: 'lowercase'
-  }
+  async function handleRefresh() {
+    if (getUserToken()) {
 
-  const OpenSans ={
-    fontFamily: '"Open Sans", sans-serif'
-  }
+      await foodItemServices.getAllFoodItems().then((res) => {
+        setFoodItems(res)
+      })
+        .catch((err) => console.log(err))
 
-  
-
-  async function handleRequest() {
-    await foodItemServices.getAllFoodItems().then((res) => {
-      setFoodItems(res)
-    })
-    .catch((err)=>console.log(err))
-
-    await notifServices.getAllNotifs().then((res) => {
-      setNotifs(res)
-    })
-    .catch((err)=>console.log(err))
+      await notifServices.getAllNotifs().then((res) => {
+        setNotifs(res)
+      })
+        .catch((err) => console.log(err))
+    }
+    setToggle(!toggle)
   }
 
   useEffect(() => {
-    setToggle(true)
+    handleRefresh()
   }, [])
 
   useEffect(() => {
-    handleRequest()
-    if (foodItems?.length){
-      tools.updateAllDaysLeft(foodItems)
+    handleRefresh()
+    if (getUserToken()) {
+      if (foodItems?.length) {
+        tools.updateAllDaysLeft(foodItems)
+      }
     }
-    
-  }, [toggle])
+  }, [getUserToken()])
 
   return (
     <div className='App'>
       <FridgeInfo
         value={{
+          handleRefresh: handleRefresh,
+          toggle,
           foodItems: foodItems,
           setFoodItems: setFoodItems,
           notifs: notifs,
           setNotifs: setNotifs,
-          toggle: toggle,
-          setToggle: setToggle,
           Mooli: Mooli,
           OpenSans: OpenSans
         }}

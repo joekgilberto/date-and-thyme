@@ -7,8 +7,9 @@ import Fridge from '../../pages/Fridge/Fridge';
 import NewFood from '../../pages/NewFood/NewFood';
 import ShowFood from '../../pages/ShowFood/ShowFood';
 import Notifications from '../../pages/Notifications/Notifications';
-import TestApp from '../../pages/tests/TestApp';
+import Auth from '../../pages/Auth/Auth';
 import Error from '../../pages/Error/Error';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 export default function Main() {
 
@@ -16,11 +17,11 @@ export default function Main() {
         <main>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/fridge" element={<Fridge />} />
-                <Route path="/fridge/new" element={<NewFood />} />
-                <Route path="/fridge/:id" element={<ShowFood />} />
-                <Route path="/feed" element={<Notifications />} />
-                <Route path="/test" element={<TestApp />} />
+                <Route path="/fridge" element={<PrivateRoute><Fridge /></PrivateRoute>} />
+                <Route path="/fridge/new" element={<PrivateRoute><NewFood /></PrivateRoute>} />
+                <Route path="/fridge/:id" element={<PrivateRoute><ShowFood /></PrivateRoute>} />
+                <Route path="/feed" element={<PrivateRoute><Notifications /></PrivateRoute>} />
+                <Route path="/auth" element={<Auth />} />
                 <Route path={"/*"} element={<Error />} />
             </Routes>
         </main>
