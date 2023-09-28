@@ -12,8 +12,8 @@ export async function login(data) {
 
 export async function signUp(data) {
     try {
-        return await authAPI.signUp(data).then((res)=>{
-            authAPI.login(res).then((token)=>{
+        return await authAPI.signUp(data).then(async (res)=>{
+            return await authAPI.login(data).then((token)=>{
                 return token
             })
         })

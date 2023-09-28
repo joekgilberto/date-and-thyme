@@ -1,0 +1,32 @@
+.Auth {
+    height: calc(100vh - 185px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.auth-form {
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form input {
+    width: 100%;
+    border: 2px solid #d2d2d2;
+    color: #1976d2;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.password-error{
+    color: #ff0000;
+}

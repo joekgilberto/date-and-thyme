@@ -5,13 +5,22 @@ import * as authServices from '../../utilities/auth-services'
 import { FridgeContext } from "../../data";
 import { setUserToken, setUsername } from '../../utilities/auth-token'
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
-export default function SignUp({initState}) {
+export default function SignUp({ handleClick }) {
+
+    const initState = {
+        username: "",
+        password: "",
+        reenterPassword: ""
+    }
 
     const navigate = useNavigate()
 
     const { toggle, setToggle } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
+    const [error, setError] = useState(null);
+
 
     function handleChange(e) {
         const updatedData = { ...formData, [e.target.name]: e.target.value }
@@ -20,26 +29,40 @@ export default function SignUp({initState}) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        await authServices.signUp(formData).then((res)=>{
-            setUsername(formData.username)
-            setUserToken(res.token)
-            setToggle(!toggle)
-            navigate('/')
-        })
-        .catch((err)=>console.log(err))
+        if (formData.password === formData.reenterPassword) {
+            delete formData.reenterPassword
+            await authServices.signUp(formData).then((res) => {
+                setUsername(formData.username)
+                setUserToken(res.token)
+                setToggle(!toggle)
+                setError(null)
+                navigate('/')
+            })
+                .catch((err) => console.log(err))
+        } else {
+            setError('Passwords do not match.')
+            setFormData(initState)
+        }
     };
 
     return (
         <div className='SignUp'>
             <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='auth-form' onSubmit={handleSubmit}>
                 <label>Username
                     <input type="text" name="username" onChange={handleChange} value={formData.username} required />
                 </label>
                 <label>Password
-                    <input type="text" name="password" onChange={handleChange} value={formData.password} required />
+                    <input type="password" name="password" onChange={handleChange} value={formData.password} required />
                 </label>
-                <button type='submit'>Submit</button>
+                <label>Re-Enter Password
+                    <input type="password" name="reenterPassword" onChange={handleChange} value={formData.reenterPassword} required />
+                </label>
+                <p className="password-error">{error}</p>
+                <div className='auth-buttons'>
+                    <Button type='submit' variant='contained' style={{ margin: '10px 5px 10px 0' }}>Submit</Button>
+                    <Button size="large" onClick={handleClick} style={{ margin: '10px 0 10px 5px' }}>Sign In</Button>
+                </div>
             </form>
         </div>
     );
