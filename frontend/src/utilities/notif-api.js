@@ -6,7 +6,8 @@ const QUERY_URL = process.env.REACT_APP_QUERY_API_URL;
 export async function index() {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin': '*'
         }
     }
     return axios
@@ -21,7 +22,8 @@ export async function index() {
 export async function show(id) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin': '*'
         }
     }
     return axios
@@ -36,7 +38,8 @@ export async function show(id) {
 export async function create(data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin': '*'
         }
     }
     return axios
@@ -51,7 +54,8 @@ export async function create(data) {
 export async function update(id,data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`
+            Authorization: `Token ${localStorage.getItem("token")}`,
+            'Access-Control-Allow-Origin': '*'
         }
     }
     return axios
