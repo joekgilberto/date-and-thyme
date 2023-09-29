@@ -1,11 +1,12 @@
 import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_FOOD_API_URL;
+const SITE_URL = process.env.REACT_APP_SITE;
 
 export async function index() {
     const config={
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': SITE_URL
         }
     }
     return axios
@@ -21,7 +22,7 @@ export async function show(id) {
     const config={
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': SITE_URL
         }
     }
     return axios
@@ -37,7 +38,7 @@ export async function create(data) {
     const config={
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': SITE_URL
         }
     }
     return axios
@@ -53,7 +54,7 @@ export async function update(id,data) {
     const config={
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': SITE_URL
         }
     }
     return axios
@@ -69,7 +70,7 @@ export async function destroy(id) {
     const config={
         headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': SITE_URL
         }
     }
     return axios
