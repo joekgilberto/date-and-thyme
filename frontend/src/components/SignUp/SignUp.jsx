@@ -7,6 +7,8 @@ import * as authServices from '../../utilities/auth-services'
 import { setUserToken, setUsername } from '../../utilities/auth-token'
 
 import Button from '@mui/material/Button';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function SignUp({ handleClick }) {
 
@@ -21,11 +23,16 @@ export default function SignUp({ handleClick }) {
     const { handleRefresh } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
     const [error, setError] = useState(null);
+    const [view, setView] = useState(false)
 
 
     function handleChange(e) {
         const updatedData = { ...formData, [e.target.name]: e.target.value }
         setFormData(updatedData)
+    }
+
+    function handleViewPassword() {
+        setView(!view)
     }
 
     async function handleSubmit(e) {
@@ -53,11 +60,14 @@ export default function SignUp({ handleClick }) {
                 <label>Username
                     <input type="text" name="username" onChange={handleChange} value={formData.username} required />
                 </label>
-                <label>Password
-                    <input type="password" name="password" onChange={handleChange} value={formData.password} required />
+                <label>
+                    <div className='password-label'>Password
+                        {view ? <VisibilityOffIcon onClick={() => handleViewPassword()} color="disabled" /> : <VisibilityIcon onClick={() => handleViewPassword()} color="disabled" />}
+                    </div>
+                    <input type={view?'text':'password'} name="password" onChange={handleChange} value={formData.password} required />
                 </label>
                 <label>Re-Enter Password
-                    <input type="password" name="reenterPassword" onChange={handleChange} value={formData.reenterPassword} required />
+                    <input type={view?'text':'password'} name="reenterPassword" onChange={handleChange} value={formData.reenterPassword} required />
                 </label>
                 <p className="password-error">{error}</p>
                 <div className='auth-buttons'>

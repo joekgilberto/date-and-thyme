@@ -7,6 +7,8 @@ import * as authServices from '../../utilities/auth-services'
 import { setUserToken, setUsername } from '../../utilities/auth-token'
 
 import Button from '@mui/material/Button';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function SignIn({ handleClick }) {
     const initState = {
@@ -18,10 +20,15 @@ export default function SignIn({ handleClick }) {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState(initState);
+    const [view, setView] = useState(false)
 
     function handleChange(e) {
         const updatedData = { ...formData, [e.target.name]: e.target.value }
         setFormData(updatedData)
+    }
+
+    function handleViewPassword(){
+        setView(!view)
     }
 
     async function handleSubmit(e) {
@@ -42,8 +49,11 @@ export default function SignIn({ handleClick }) {
                 <label>Username
                     <input type="text" name="username" onChange={handleChange} value={formData.username} required />
                 </label>
-                <label>Password
-                    <input type="password" name="password" onChange={handleChange} value={formData.password} required />
+                <label>
+                    <div className='password-label'>Password
+                        {view?<VisibilityOffIcon onClick={()=>handleViewPassword()} color="disabled" />: <VisibilityIcon onClick={()=>handleViewPassword()} color="disabled" />}
+                    </div>
+                    <input type={view?'text':'password'} name="password" onChange={handleChange} value={formData.password} required />
                 </label>
                 <div className='auth-buttons'>
                     <Button type='submit' variant='contained' style={{ margin: '10px 5px 10px 0' }}>Submit</Button>

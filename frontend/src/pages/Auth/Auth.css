@@ -42,3 +42,8 @@
 .password-error{
     color: #ff0000;
 }
+
+.password-label{
+    display: flex;
+    gap: 10px;
+}
