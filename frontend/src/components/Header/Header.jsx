@@ -55,7 +55,7 @@ export default function Header() {
           <Toolbar style={{width: '99%'}}>
             <div className='header-spreader'>
               <div className='header-logo'>
-                <img className='thyme' src={require('../../assets/thyme.png')} />
+                <img className='thyme' alt='thyme' src={require('../../assets/thyme.png')} />
                 <Link to="/">
                   <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} style={{ ...Mooli, padding: '20px 0' }}>
                     date & thyme
