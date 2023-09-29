@@ -1,12 +1,10 @@
 import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_NOTIF_API_URL;
-const SITE_URL = process.env.REACT_APP_SITE;
 
 export async function index() {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': SITE_URL
+            Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
     return axios
@@ -21,8 +19,7 @@ export async function index() {
 export async function show(id) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': SITE_URL
+            Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
     return axios
@@ -37,8 +34,7 @@ export async function show(id) {
 export async function create(data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': SITE_URL
+            Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
     return axios
@@ -53,8 +49,7 @@ export async function create(data) {
 export async function update(id,data) {
     const config={
         headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            'Access-Control-Allow-Origin': SITE_URL
+            Authorization: `Token ${localStorage.getItem("token")}`
         }
     }
     return axios

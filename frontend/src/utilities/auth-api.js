@@ -1,16 +1,10 @@
 import axios from 'axios';
 const TOKEN_URL = process.env.REACT_APP_AUTH_API_URL;
 const USER_URL = process.env.REACT_APP_USER_API_URL;
-const SITE_URL = process.env.REACT_APP_SITE;
 
 export async function login(data) {
-    const config={
-        headers: {
-            'Access-Control-Allow-Origin': SITE_URL
-        }
-    }
     return axios
-        .post(TOKEN_URL, data, config)
+        .post(TOKEN_URL, data)
         .then((res) => {
             return res.data
         })
@@ -19,13 +13,8 @@ export async function login(data) {
 };
 
 export async function signUp(data) {
-    const config={
-        headers: {
-            'Access-Control-Allow-Origin': SITE_URL
-        }
-    }
     return axios
-        .post(USER_URL, data, config)
+        .post(USER_URL, data)
         .then((res) => {
             return res.data
         })
