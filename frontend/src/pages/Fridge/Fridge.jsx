@@ -8,6 +8,7 @@ import { getUsername } from '../../utilities/auth-token';
 import FoodItem from '../../components/FoodItem/FoodItem';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { Paper } from '@mui/material';
 
 export default function Fridge() {
 
@@ -26,7 +27,11 @@ export default function Fridge() {
                 return (
                     <FoodItem key={idx} foodItem={foodItem} />
                 )
-            }) : null}
+            }) : (
+                <Paper elevation={3} style={{ margin: '20px', padding: '20px' }}>
+                    <h2>No groceries yet, get shopping!</h2>
+                </Paper>
+            )}
             <div className='add-button'>
                 <Link to="/fridge/new">
                     <Fab size="medium" color="primary" aria-label="add">
