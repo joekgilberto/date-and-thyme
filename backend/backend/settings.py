@@ -114,7 +114,6 @@ WHITELIST = str(os.getenv('WHITELIST'))
 
 CORS_ORIGIN_WHITELIST = (
 	WHITELIST,
-    
 )
 
 # Internationalization
