@@ -110,8 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # White listing the localhost:3000 port
 # for React
+WHITELIST = str(os.getenv('WHITELIST'))
+
 CORS_ORIGIN_WHITELIST = (
-	'http://localhost:3000',
+	WHITELIST,
+    
 )
 
 # Internationalization
