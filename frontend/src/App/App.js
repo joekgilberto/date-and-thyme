@@ -2,10 +2,10 @@ import './App.css';
 
 import { useEffect, useState } from 'react';
 import { FridgeContext } from '../data';
-import * as foodItemServices from '../utilities/food-services'
-import * as notifServices from '../utilities/notif-services'
+import * as foodItemServices from '../utilities/food/food-services'
+import * as notifServices from '../utilities/notif/notif-services'
 import * as tools from '../utilities/tools'
-import { getUserToken } from '../utilities/auth-token';
+import { getUserToken } from '../utilities/auth/auth-token';
 
 import Header from '../components/Header/Header';
 import Main from '../components/Main/Main';

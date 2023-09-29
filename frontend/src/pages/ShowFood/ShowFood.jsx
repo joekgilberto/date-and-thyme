@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import * as foodItemServices from '../../utilities/food-services'
-import * as notifServices from '../../utilities/notif-services'
-import { getUserToken } from '../../utilities/auth-token';
+import * as foodItemServices from '../../utilities/food/food-services'
+import * as notifServices from '../../utilities/notif/notif-services'
+import { getUserToken } from '../../utilities/auth/auth-token';
+import aiGeneration from '../../utilities/open-ai/open-ai-api';
 
 import EditFood from '../../components/EditFood/EditFood';
 import ShowNotif from '../../components/ShowNotif/ShowNotif';
@@ -17,12 +18,17 @@ export default function ShowFood() {
   const { toggle } = useContext(FridgeContext);
   const [foodItem, setFoodItem] = useState(null)
   const [notif, setNotif] = useState(null)
+  const [recipe, setRecipe] = useState(null)
   const { id } = useParams()
 
   async function handleRequest() {
     if (getUserToken()) {
-      await foodItemServices.getFoodItem(id).then((res) => {
+      await foodItemServices.getFoodItem(id).then(async (res) => {
         setFoodItem(res)
+        await aiGeneration(res.name).then((generation)=>{
+          console.log(generation)
+          setRecipe(generation)
+        })
       })
         .catch((err) => console.log(err))
 
@@ -61,6 +67,12 @@ export default function ShowFood() {
           </>
         ) : null}
       </Paper>
+      {recipe?(
+        <Paper elevation={3} style={{ padding: '20px' }}>
+          <h2>Suggested recipe:</h2>
+          <p>{recipe.message}</p>
+        </Paper>
+      ):null}
     </div>
   );
 }

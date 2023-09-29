@@ -1,6 +1,6 @@
 import * as foodApi from './food-api'
-import * as notifServices from './notif-services'
-import { getUserToken } from './auth-token';
+import * as notifServices from '../notif/notif-services'
+import { getUserToken } from '../auth/auth-token';
 
 export async function getAllFoodItems() {
     try {

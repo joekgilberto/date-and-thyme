@@ -1,4 +1,4 @@
-import * as notifServices from '../utilities/notif-services'
+import * as notifServices from '../utilities/notif/notif-services'
 
 export function initDaysLeft(foodItem) {
     const expire = new Date(foodItem.expiration_date)

@@ -2,8 +2,8 @@ import './EditFood.css'
 
 import { useState, useContext } from "react";
 import { FridgeContext } from "../../data";
-import * as foodItemServices from '../../utilities/food-services'
-import { getUserToken } from '../../utilities/auth-token';
+import * as foodItemServices from '../../utilities/food/food-services'
+import { getUserToken } from '../../utilities/auth/auth-token';
 
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
 import Button from '@mui/material/Button';
