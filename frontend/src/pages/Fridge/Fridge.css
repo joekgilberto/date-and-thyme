@@ -1,5 +1,6 @@
+
 .Fridge h1{
-    margin: 20px;
+    margin: 40px 20px;
 }
 
 .Fridge a{
@@ -17,4 +18,11 @@
 
 .Fridge>div:hover{
     animation: rise .5s forwards;
+}
+
+.add-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
 }
