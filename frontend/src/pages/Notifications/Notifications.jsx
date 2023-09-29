@@ -26,7 +26,9 @@ export default function Notifications() {
                 <Stack sx={{ width: '100%', padding: '20px' }} spacing={2}>
                     {notifs?.length ? notifs.map((notif, idx) => {
                         return (notif.days_left<=5?<Notif key={idx} notif={notif} />: null)
-                    }) : null}
+                    }) : (
+                        <h2>no notifiactions</h2>
+                    )}
                 </Stack>
             </Paper>
         </div>

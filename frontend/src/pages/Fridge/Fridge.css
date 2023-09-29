@@ -3,6 +3,11 @@
     margin: 40px 20px;
 }
 
+.Fridge h2{
+    color: #717171;
+    margin: 20px;
+}
+
 .Fridge a{
     text-decoration: none;
     color: #000;

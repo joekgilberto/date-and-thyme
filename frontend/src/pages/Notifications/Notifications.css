@@ -1,3 +1,8 @@
+.Notifications h2{
+    padding: 20px;
+    color: #717171;
+}
+
 .notif-header{
     display: flex;
     margin: 20px;
