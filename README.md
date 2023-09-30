@@ -1,5 +1,5 @@
 # date-and-thyme
-A full-stack web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku.  Built by [Joe Gilberto](https://joekgilberto.com/).
+A full-stack Django/React web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku that interacts with a PostgreSQL database through the Django REST Framework.  Built by [Joe Gilberto](https://joekgilberto.com/).
 
 ## Deployment
 Find the app deployed on Netlify, here: [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
@@ -36,7 +36,7 @@ As a user, I want to be able to add grocereis to my fridge to be tracked.
 
 ## Technologies Used
 
-For the frontend, I utlized [React](https://react.dev/) components combined with [Material UI](https://mui.com/material-ui/) for styling and [Axios](https://axios-http.com/) for API calls to my backend.  The backend was built using [Django](https://www.djangoproject.com/), employing the [Django REST Framework](https://www.django-rest-framework.org/), to make RESTful API routes.  User's are authenticated by signing in with [Django Token Authentication](https://www.django-rest-framework.org/api-guide/authentication/).
+For the frontend, I utlized [React](https://react.dev/) components combined with [Material UI](https://mui.com/material-ui/) for styling and [Axios](https://axios-http.com/) to make API calls to my backend.  My backend was built using [Django](https://www.djangoproject.com/) and interacting with [PostgreSQL](https://www.postgresql.org/), while employing the [Django REST Framework](https://www.django-rest-framework.org/), to make RESTful API routes.  User's are authenticated by signing in with [Django Token Authentication](https://www.django-rest-framework.org/api-guide/authentication/).
 
 ### Resources
 Below are specific relevant resources I referenced while building this application.
@@ -51,7 +51,7 @@ Below are specific relevant resources I referenced while building this applicati
 The following instructions were used through macOS with a silicone M1 chip.
 
 ### Fork and clone
-To deploy locally, fork and clone this repo.  Then, navigate into the backend directory.
+To deploy locally, fork and clone this repo.  Then, using the terminal, navigate into the backend directory.
 
 ### Set up a virtual environment to run Python
 Once in the backend, you will have to set up a virtual environment through the following commands.
