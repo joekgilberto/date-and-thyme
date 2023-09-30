@@ -1,5 +1,5 @@
 # date-and-thyme
-A Django/React web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku.  Built by [Joe Gilberto](https://joekgilberto.com/).
+A full-stack web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku.  Built by [Joe Gilberto](https://joekgilberto.com/).
 
 ## Deployment
 Find the app deployed on Netlify, here: [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
