@@ -2,7 +2,7 @@ import "./HomeCard.css"
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import { getUserToken, getUsername } from '../../utilities/auth-token';
+import { getUserToken, getUsername } from '../../utilities/local-storage';
 
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';

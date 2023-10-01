@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+# Imports dotenv and os to access environmental variables
 from dotenv import load_dotenv
 import os
 
@@ -33,7 +34,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# Added main_app to import application, corsheaders to handle headers, rest_framework to allow Django REST Framework, and rest_framework.authtoken to access auth token
 INSTALLED_APPS = [
     'main_app',
     'corsheaders',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Adds corsheaders.middleware.CorsMiddleware
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# Adds connection to PostgreSQL database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -110,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # White listing the localhost:3000 port
 # for React
+# Retrieves WHITELIST environmental variable to allow requests from this destination
 WHITELIST = str(os.getenv('WHITELIST'))
 
 CORS_ORIGIN_WHITELIST = (
@@ -144,5 +147,6 @@ REST_FRAMEWORK = {
     ],
 }
 
+# Imports django_on_heroku into app
 import django_on_heroku
 django_on_heroku.settings(locals())

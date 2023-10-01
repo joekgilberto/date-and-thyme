@@ -3,7 +3,7 @@ import './Fridge.css';
 import { useState, useEffect, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import { getUsername } from '../../utilities/auth-token';
+import { getUsername } from '../../utilities/local-storage';
 
 import FoodItem from '../../components/FoodItem/FoodItem';
 import Fab from '@mui/material/Fab';

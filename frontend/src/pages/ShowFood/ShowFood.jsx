@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'
-import { getUserToken } from '../../utilities/auth-token';
+import { getUserToken } from '../../utilities/local-storage';
 
 import EditFood from '../../components/EditFood/EditFood';
 import ShowNotif from '../../components/ShowNotif/ShowNotif';

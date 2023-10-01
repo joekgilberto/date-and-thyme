@@ -3,7 +3,7 @@ import './Auth.css';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import { getUserToken } from '../../utilities/auth-token'
+import { getUserToken } from '../../utilities/local-storage'
 
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';

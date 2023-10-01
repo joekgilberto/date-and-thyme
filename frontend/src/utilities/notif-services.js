@@ -1,6 +1,6 @@
 import * as notifApi from './notif-api'
 import * as tools from './tools'
-import { getUserToken } from './auth-token';
+import { getUserToken } from './local-storage';
 
 export async function getAllNotifs() {
     try {

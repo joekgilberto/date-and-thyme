@@ -4,7 +4,7 @@ import {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as notifServices from '../../utilities/notif-services'
-import { getUserToken } from '../../utilities/auth-token';
+import { getUserToken } from '../../utilities/local-storage';
 
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';

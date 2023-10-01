@@ -2,7 +2,7 @@ import { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
-import { getUserToken } from '../../utilities/auth-token';
+import { getUserToken } from '../../utilities/local-storage';
 
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';

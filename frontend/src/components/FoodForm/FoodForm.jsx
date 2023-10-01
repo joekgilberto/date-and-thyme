@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
-import { getUserToken } from '../../utilities/auth-token';
+import { getUserToken } from '../../utilities/local-storage';
 
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';

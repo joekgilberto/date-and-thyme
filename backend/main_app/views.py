@@ -1,12 +1,25 @@
+# Improts APIView view from rest_framework
 from rest_framework.views import APIView
+# Imports Response from rest_framework
 from rest_framework.response import Response
+# Imports status from rest_framework
 from rest_framework import status
+# Imports permissions' IsAuthenticated from rest_framework
 from rest_framework.permissions import IsAuthenticated
-from django.http import Http404
+# Imports Http404 and HttpResponse
+from django.http import Http404, HttpResponse
+# Imports make_password
 from django.contrib.auth.hashers import make_password
+# Imports serializers
 from .serializers import FoodItemSerializer,NotificationSerializer,UserSerializer
+# Imports models
 from .models import FoodItem,Notification
 
+# Defines home view which response with "date & thyme"
+def home(request):
+    return HttpResponse("date & thyme")
+
+# Defines view to create a user utilizing the APIView
 class CreateUser(APIView):
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
@@ -19,8 +32,9 @@ class CreateUser(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+# Defines view to get all FoodItems and creating one if the user is authenticated
 class FoodItemList(APIView):
-    permission_classes = (IsAuthenticated,)             # <-- And here
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         food_items = FoodItem.objects.all()
@@ -36,6 +50,7 @@ class FoodItemList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# Defines view to get, update, and delete specific FoodItems found based off of the auth token if authenticated
 class FoodItemDetail(APIView):
     permission_classes = (IsAuthenticated,)             # <-- And here
 
@@ -78,6 +93,7 @@ class FoodItemDetail(APIView):
             food_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
+# Defines view to get all Notifications and creating one if the user is authenticated
 class NotificationList(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -95,6 +111,7 @@ class NotificationList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# Defines view to get, update, and delete specific Notifications found based off of the auth token if authenticated
 class NotificationDetail(APIView):
     permission_classes = (IsAuthenticated,)
 

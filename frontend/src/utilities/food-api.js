@@ -1,6 +1,9 @@
+// Imports axios for API calls
 import axios from 'axios';
+// Imports food API environmental variables
 const BASE_URL = process.env.REACT_APP_FOOD_API_URL;
 
+// Creates function to get all food items as authorized by token
 export async function index() {
     const config={
         headers: {
@@ -16,6 +19,7 @@ export async function index() {
 
 };
 
+// Creates function to get a specific food item as authorized by token
 export async function show(id) {
     const config={
         headers: {
@@ -31,6 +35,7 @@ export async function show(id) {
 
 };
 
+// Creates function to get create food items as authorized by token
 export async function create(data) {
     const config={
         headers: {
@@ -46,6 +51,7 @@ export async function create(data) {
 
 };
 
+// Creates function to update a specific food item as authorized by token
 export async function update(id,data) {
     const config={
         headers: {
@@ -61,6 +67,7 @@ export async function update(id,data) {
 
 };
 
+// Creates function to delete a specific food item as authorized by token
 export async function destroy(id) {
     const config={
         headers: {

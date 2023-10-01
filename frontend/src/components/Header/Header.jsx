@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as tools from '../../utilities/tools'
-import { getUserToken, clearUserToken, clearUsername } from '../../utilities/auth-token';
+import { getUserToken, clearUserToken, clearUsername } from '../../utilities/local-storage';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
