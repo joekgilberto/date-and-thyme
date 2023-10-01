@@ -57,8 +57,9 @@ class FoodItemDetail(APIView):
     def get_object(self, pk):
         food_item = FoodItem.objects.get(pk=pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(food_item.owner)
         
-        if food_item.owner == token[1]:
+        if owner == token[1]:
             try:
                 return food_item
             except FoodItem.DoesNotExist:
@@ -68,8 +69,9 @@ class FoodItemDetail(APIView):
     def get(self, request, pk, format=None):
         food_item = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
-        
-        if food_item.owner == token[1]:
+        owner = str(food_item.owner)
+
+        if owner == token[1]:
         
             serializer = FoodItemSerializer(food_item)
             return Response(serializer.data)
@@ -77,8 +79,9 @@ class FoodItemDetail(APIView):
     def put(self, request, pk, format=None):
         food_item = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(food_item.owner)
 
-        if food_item.owner == token[1]:
+        if owner == token[1]:
             serializer = FoodItemSerializer(food_item, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -88,8 +91,9 @@ class FoodItemDetail(APIView):
     def delete(self, request, pk, format=None):
         food_item = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(food_item.owner)
 
-        if food_item.owner == token[1]:
+        if owner == token[1]:
             food_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -118,8 +122,9 @@ class NotificationDetail(APIView):
     def get_object(self, pk):
         notif = Notification.objects.get(pk=pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(notif.owner)
 
-        if notif.owner == token[1]:
+        if owner == token[1]:
             try:
                 return notif
             except Notification.DoesNotExist:
@@ -128,16 +133,18 @@ class NotificationDetail(APIView):
     def get(self, request, pk, format=None):
         notif = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(notif.owner)
 
-        if notif.owner == token[1]:
+        if owner == token[1]:
             serializer = NotificationSerializer(notif)
             return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         notif = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(notif.owner)
 
-        if notif.owner == token[1]:
+        if owner == token[1]:
             serializer = NotificationSerializer(notif, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -147,7 +154,8 @@ class NotificationDetail(APIView):
     def delete(self, request, pk, format=None):
         notif = self.get_object(pk)
         token = self.request.META.get('HTTP_AUTHORIZATION').split()
+        owner = str(notif.owner)
 
-        if notif.owner == token[1]:
+        if owner == token[1]:
             notif.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
