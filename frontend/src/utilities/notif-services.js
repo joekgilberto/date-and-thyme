@@ -1,7 +1,8 @@
+// Imports notif api and tools
 import * as notifApi from './notif-api'
 import * as tools from './tools'
-import { getUserToken } from './local-storage';
 
+// gets all notifs
 export async function getAllNotifs() {
     try {
         return await notifApi.index().then((notifs)=>{
@@ -13,6 +14,7 @@ export async function getAllNotifs() {
     }
 }
 
+// gets a specific notif
 export async function getNotif(id) {
     try {
         const response = await notifApi.show(id)
@@ -22,6 +24,7 @@ export async function getNotif(id) {
     }
 }
 
+// creates a notif based off of foodItem data
 export async function createNotif(foodItemData) {
     try {
         const daysLeft = tools.initDaysLeft(foodItemData)
@@ -33,6 +36,7 @@ export async function createNotif(foodItemData) {
     }
 }
 
+// updates a notif
 export async function updateNotif(id,data) {
     try {
         const response = await notifApi.update(id,data)
@@ -43,6 +47,7 @@ export async function updateNotif(id,data) {
     }
 }
 
+// updates just a notif's days_left property
 export async function updateNotifDate(foodItemData) {
     try {
         return await getNotif(foodItemData.pk).then(async (notif)=>{
@@ -64,6 +69,7 @@ export async function updateNotifDate(foodItemData) {
     }
 }
 
+// update if a notif is read or not
 export async function updateNotifRead(notif) {
     try {
         const data = {...notif, read: !notif.read}
