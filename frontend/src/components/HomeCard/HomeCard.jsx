@@ -22,6 +22,10 @@ export default function HomeCard() {
         setToken(getUserToken())
     }, [toggle, getUserToken()])
 
+    useEffect(() => {
+        setUsername(getUsername())
+    }, [toggle, getUsername()])
+
     return (
         <Paper elevation={3} style={{ ...OpenSans, width: '90%', padding: '20px 30px' }}>
             <div className='home-header'>
