@@ -2,6 +2,7 @@ import './Notifications.css';
 
 import { useState, useContext, useEffect } from "react";
 import { FridgeContext } from "../../data";
+import * as tools from '../../utilities/tools'
 
 import Notif from '../../components/Notif/Notif';
 import Paper from '@mui/material/Paper';
@@ -10,22 +11,18 @@ import Stack from '@mui/material/Stack';
 export default function Notifications() {
 
     const { handleRefresh, notifs } = useContext(FridgeContext);
-    const [count, setCount] = useState(0)
+    const [active, setActive] = useState(null)
+
+    async function handleActive(){
+        await tools.activeNotifs().then((res)=>{
+            setActive(res)
+        })
+    }
 
     useEffect(() => {
         handleRefresh()
-        console.log(notifs)
+        handleActive()
     }, [])
-
-    useEffect(() => {
-        if (notifs) {
-            for (let n of notifs) {
-                if (n.days_left <= 5) {
-                    setCount(count + 1)
-                }
-            }
-        }
-    }, [notifs])
 
     return (
         <div className='Notifications'>
@@ -35,12 +32,14 @@ export default function Notifications() {
             </div>
             <Paper>
                 <Stack sx={{ width: '100%', padding: '20px' }} spacing={2}>
-                    {notifs?.length ? notifs.map((notif, idx) => {
-                        return (<>
-                            {!count ? <h2>no notifiactions</h2> : null}
-                            {notif.days_left <= 5 ? <Notif key={idx} notif={notif} /> : null}
-                        </>)
-                    }) : (
+                    {notifs?.length ? (
+                        <>
+                        {notifs.map((notif, idx) => {
+                            return (notif.days_left <= 5 ? <Notif key={idx} notif={notif} /> : null)
+                        })}
+                        {!active?<h2>no notifiactions</h2>:null}
+                        </>
+                    ) : (
                         <h2>no notifiactions</h2>
                     )}
                 </Stack>
