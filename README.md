@@ -19,7 +19,7 @@ As a user, I want to sign in to acces personalized data.
 As a user, I want to sign in to acces personalized data.
 
 ### Home (Signed In)
-![Home (Signed In)](./lib/assets/readme/sign-up.png)
+![Home (Signed In)](./lib/assets/readme/home-signed-in.png)
 As a user, once signed in I want to access a personalized homepage.
 
 ### Fridge
