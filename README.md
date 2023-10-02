@@ -14,7 +14,7 @@ As a user, I want to land on a well styiled home page when I visit the applicati
 ![Sign in](./lib/assets/readme/sign-in.png)
 As a user, I want to sign in to acces personalized data.
 
-### Sign In
+### Sign Up
 ![Sign up](./lib/assets/readme/sign-up.png)
 As a user, I want to sign in to acces personalized data.
 
