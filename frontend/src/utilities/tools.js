@@ -54,17 +54,17 @@ export async function unreadNotifs() {
 }
 
 export async function activeNotifs() {
-    let active = false
+    let inactive = true
 
     await notifServices.getAllNotifs().then((res) => {
         for (let notif of res) {
             if (notif.days_left <= 5) {
-                active = true
+                inactive = false
                 break
             }
         }
     })
     .catch((err)=>console.log(err))
 
-    return active
+    return inactive
 }

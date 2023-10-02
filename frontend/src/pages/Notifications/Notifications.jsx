@@ -11,17 +11,17 @@ import Stack from '@mui/material/Stack';
 export default function Notifications() {
 
     const { handleRefresh, notifs } = useContext(FridgeContext);
-    const [active, setActive] = useState(null)
+    const [inactive, setInactive] = useState(null)
 
-    async function handleActive(){
+    async function handleInactive(){
         await tools.activeNotifs().then((res)=>{
-            setActive(res)
+            setInactive(res)
         })
     }
 
     useEffect(() => {
         handleRefresh()
-        handleActive()
+        handleInactive()
     }, [])
 
     return (
@@ -37,7 +37,7 @@ export default function Notifications() {
                         {notifs.map((notif, idx) => {
                             return (notif.days_left <= 5 ? <Notif key={idx} notif={notif} /> : null)
                         })}
-                        {!active?<h2>no notifiactions</h2>:null}
+                        {inactive?<h2>no notifiactions</h2>:null}
                         </>
                     ) : (
                         <h2>no notifiactions</h2>
