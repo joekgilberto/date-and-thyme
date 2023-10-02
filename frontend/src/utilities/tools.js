@@ -53,6 +53,7 @@ export async function unreadNotifs() {
     return unread
 }
 
+// Looks to see if a user has any active notifications that will appear on the notifications page
 export async function activeNotifs() {
     let inactive = true
 
