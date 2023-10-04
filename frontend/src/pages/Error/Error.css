@@ -1,0 +1,14 @@
+.Error{
+    height: calc(100vh - 143px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Error h1{
+    font-family: 'Mooli', sans-serif;
+}
+
+.Error button {
+    margin-bottom: 10px;
+}
