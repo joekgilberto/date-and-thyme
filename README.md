@@ -1,4 +1,4 @@
-# date-and-thyme
+# date and thyme
 A full-stack Django/React web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku that interacts with a PostgreSQL database through the Django REST Framework.  Built by [Joe Gilberto](https://joekgilberto.com/).
 
 ## Deployment
@@ -14,12 +14,12 @@ As a user, I want to land on a well styiled home page when I visit the applicati
 ![Sign in](./lib/assets/readme/sign-in.png)
 As a user, I want to sign in to acces personalized data.
 
-### Sign In
+### Sign Up
 ![Sign up](./lib/assets/readme/sign-up.png)
 As a user, I want to sign in to acces personalized data.
 
 ### Home (Signed In)
-![Home (Signed In)](./lib/assets/readme/sign-up.png)
+![Home (Signed In)](./lib/assets/readme/home-signed-in.png)
 As a user, once signed in I want to access a personalized homepage.
 
 ### Fridge
