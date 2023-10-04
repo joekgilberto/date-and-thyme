@@ -41,7 +41,7 @@ export default function EditFood({ foodItem }) {
             {show ? (
                 <div className='EditFood'>
                     <Paper style={{ padding: '20px', backgroundColor: '#e5f6fd' }}>
-                        <form className="edit-food-form">
+                        <form className="edit-food-form" onSubmit={handleSubmit}>
                             <label>Name
                                 <input type="text" name="name" onChange={handleChange} value={editFormData.name} required />
                             </label>
@@ -51,7 +51,7 @@ export default function EditFood({ foodItem }) {
                             <label>Quantity
                                 <input type="number" name="quantity" onChange={handleChange} min="1" value={editFormData.quantity} required />
                             </label>
-                            <Button style={Mooli} variant="contained" onClick={handleSubmit}>Save</Button>
+                            <Button type="submit" style={Mooli} variant="contained">Save</Button>
                             <Button style={Mooli} variant="outlined" onClick={handleClick}>Discard</Button>
                             <ConfirmDelete foodItem={foodItem} />
                         </form>
