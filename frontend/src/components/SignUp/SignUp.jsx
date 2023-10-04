@@ -15,7 +15,7 @@ export default function SignUp({ handleClick }) {
     const initState = {
         username: "",
         password: "",
-        reenterPassword: ""
+        confirmPassword: ""
     }
 
     const navigate = useNavigate()
@@ -37,8 +37,8 @@ export default function SignUp({ handleClick }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        if (formData.password === formData.reenterPassword) {
-            delete formData.reenterPassword
+        if (formData.password === formData.confirmPassword) {
+            delete formData.confirmPassword
             await authServices.signUp(formData).then((res) => {
                 setUsername(formData.username)
                 setUserToken(res.token)
@@ -66,8 +66,8 @@ export default function SignUp({ handleClick }) {
                     </div>
                     <input type={view?'text':'password'} name="password" onChange={handleChange} value={formData.password} required />
                 </label>
-                <label>Re-Enter Password
-                    <input type={view?'text':'password'} name="reenterPassword" onChange={handleChange} value={formData.reenterPassword} required />
+                <label>Confirm Password
+                    <input type={view?'text':'password'} name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
                 </label>
                 <p className="password-error">{error}</p>
                 <div className='auth-buttons'>
