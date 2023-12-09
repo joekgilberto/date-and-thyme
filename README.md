@@ -124,7 +124,7 @@ npm start
 ```
 
 ### Browse
-Now, you can go to localhost:3000 in your browser (Google Chrome is reccommended for best performance) and browse the application.
+Now, you can go to http://localhost:3000/ in your browser (Google Chrome is reccommended for best performance) and browse the application.
 
 ## Current User Flow
 Firstly, visit [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
