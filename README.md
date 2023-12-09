@@ -41,7 +41,7 @@ For the frontend, I utlized [React](https://react.dev/) components combined with
 ### Resources
 Below are specific relevant resources I referenced while building this application.
 
-- [A public domain plant icon from Wikimedia](https://commons.wikimedia.org/wiki/File:Plant_(67683)_-_The_Noun_Project.svg) that I used as the favicon and header logo
+- [A public domain plant icon from Wikimedia](https://commons.wikimedia.org/wiki/File:Plant_(67683)_-_The_Noun_Project.svg) that I used as the favicon and header logo.
 - [A Django REST Framework authetnication guide from the Django REST Framework documentation](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication), that I specifically used the secition on TokenAuthentication
 - [An article, "How to Implement Token Authentication using Django REST Framework"](https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html#implementing-the-token-authentication), that helped me implement authentication upon getting a token for authentication (from the above resource, A Django REST Framework authetnication guide).
 - [A Django REST Framework tutorial for authentication and permissions from the Django REST Framework documentation](https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/), that I used to set permissions for CRUD operations.
