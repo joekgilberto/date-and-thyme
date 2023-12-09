@@ -1,8 +1,7 @@
 import './ShowFood.css';
 
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FridgeContext } from "../../data";
 import * as foodItemServices from '../../utilities/food-services'
 import * as notifServices from '../../utilities/notif-services'

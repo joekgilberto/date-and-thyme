@@ -3,6 +3,6 @@ footer a{
     color: inherit;
 }
 
-footer a:hover{
+footer:hover a{
     text-decoration: underline;
 }
