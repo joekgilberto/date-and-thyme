@@ -30,7 +30,7 @@ As a user, I want to be able to access my fridge with groceries who's expiration
 ![Notifications](./lib/assets/readme/notifs.png)
 As a user, I want to be able to see relevant notifications about the expiration status of my groceries.
 
-### Notifications
+### Add Groceries
 ![Add groceries](./lib/assets/readme/add-groceries.png)
 As a user, I want to be able to add grocereis to my fridge to be tracked.
 
