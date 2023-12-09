@@ -117,8 +117,8 @@ REACT_APP_AUTH_API_URL=http://localhost:8000/api-token-auth/
 REACT_APP_USER_API_URL=http://localhost:8000/user/
 ```
 
-### Spin up your frontend server
-Finally, while still in your frontend directory, spin up your front server:
+### Spin up your frontend app
+Finally, while still in your frontend directory, spin up your frontend app:
 ```
 npm start
 ```
