@@ -16,6 +16,8 @@ export default function EditFood({ foodItem }) {
     const [editFormData, setEditFormData] = useState(foodItem);
     const [show, setShow] = useState(false)
 
+    console.log(foodItem)
+
     async function handleSubmit(e) {
         e.preventDefault()
         if (getUserToken) {
@@ -46,7 +48,7 @@ export default function EditFood({ foodItem }) {
                                 <input type="text" name="name" onChange={handleChange} value={editFormData.name} required />
                             </label>
                             <label>Expiration Date
-                                <input type="date" name="expiration_date" onChange={handleChange} value={editFormData.expiration_date} required />
+                                <input type="date" name="expiration_date" onChange={handleChange} min={foodItem.purchase_date}  value={editFormData.expiration_date} required />
                             </label>
                             <label>Quantity
                                 <input type="number" name="quantity" onChange={handleChange} min="1" value={editFormData.quantity} required />

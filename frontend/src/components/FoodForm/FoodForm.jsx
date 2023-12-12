@@ -52,7 +52,7 @@ export default function FoodForm() {
               <input type="number" name="quantity" onChange={handleChange} min="1" step="1" value={formData.quantity} required />
             </label>
             <label>Expiration Date
-              <input type="date" name="expiration_date" onChange={handleChange} value={formData.expiration_date} required />
+              <input type="date" name="expiration_date" min={new Date().toJSON().slice(0, 10)} onChange={handleChange} value={formData.expiration_date} required />
             </label>
             <Button type="submit" size="large" variant='contained' style={{ ...Mooli, fontSize: '22px' }}>add to fridge</Button>
           </form>
