@@ -22,7 +22,7 @@ export default function SignUp({ handleClick }) {
 
     const { handleRefresh } = useContext(FridgeContext);
     const [formData, setFormData] = useState(initState);
-    const [error, setError] = useState(null);
+    const [signUpError, setSignUpError] = useState(null);
     const [view, setView] = useState(false)
 
 
@@ -43,12 +43,15 @@ export default function SignUp({ handleClick }) {
                 setUsername(formData.username)
                 setUserToken(res.token)
                 handleRefresh()
-                setError(null)
+                setSignUpError(null)
                 navigate('/')
             })
-                .catch((err) => console.log(err))
+                .catch((err) =>{
+                    setSignUpError('Sign Up Error: Please retype your credentials and try again.')
+                    console.log(err)
+                })
         } else {
-            setError('Passwords do not match.')
+            setSignUpError('Passwords do not match.')
             setFormData(initState)
         }
     };
@@ -69,8 +72,10 @@ export default function SignUp({ handleClick }) {
                 <label>Confirm Password
                     <input type={view?'text':'password'} name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
                 </label>
-                <p className="password-error">{error}</p>
-                <div className='auth-buttons'>
+                {signUpError ?
+                    <p className="password-error">{signUpError}</p>
+                    : null
+                }                <div className='auth-buttons'>
                     <Button type='submit' variant='contained' style={{ margin: '10px 5px 10px 0' }}>Submit</Button>
                     <Button size="large" onClick={handleClick} style={{ margin: '10px 0 10px 5px' }}>Sign In</Button>
                 </div>

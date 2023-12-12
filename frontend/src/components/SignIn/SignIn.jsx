@@ -16,7 +16,8 @@ export default function SignIn({ handleClick }) {
         password: "",
     }
     const { handleRefresh } = useContext(FridgeContext)
-    
+    const [signInError, setSignInError] = useState(null)
+
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState(initState);
@@ -27,7 +28,7 @@ export default function SignIn({ handleClick }) {
         setFormData(updatedData)
     }
 
-    function handleViewPassword(){
+    function handleViewPassword() {
         setView(!view)
     }
 
@@ -39,7 +40,10 @@ export default function SignIn({ handleClick }) {
             handleRefresh()
             navigate('/')
         })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setSignInError('Sign In Error: Username and/or password not found.  Please retype your credentials or sign up below')
+            })
     };
 
     return (
@@ -51,10 +55,14 @@ export default function SignIn({ handleClick }) {
                 </label>
                 <label>
                     <div className='password-label'>Password
-                        {view?<VisibilityOffIcon onClick={()=>handleViewPassword()} color="disabled" />: <VisibilityIcon onClick={()=>handleViewPassword()} color="disabled" />}
+                        {view ? <VisibilityOffIcon onClick={() => handleViewPassword()} color="disabled" /> : <VisibilityIcon onClick={() => handleViewPassword()} color="disabled" />}
                     </div>
-                    <input type={view?'text':'password'} name="password" onChange={handleChange} value={formData.password} required />
+                    <input type={view ? 'text' : 'password'} name="password" onChange={handleChange} value={formData.password} required />
                 </label>
+                {signInError ?
+                    <p className="password-error">{signInError}</p>
+                    : null
+                }
                 <div className='auth-buttons'>
                     <Button type='submit' variant='contained' style={{ margin: '10px 5px 10px 0' }}>Submit</Button>
                     <Button size="large" onClick={handleClick} style={{ margin: '10px 0 10px 5px' }}>Sign Up</Button>
