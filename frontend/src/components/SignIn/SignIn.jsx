@@ -51,13 +51,13 @@ export default function SignIn({ handleClick }) {
             <h1>Sign In</h1>
             <form className='auth-form' onSubmit={handleSubmit}>
                 <label>Username
-                    <input type="text" name="username" onChange={handleChange} value={formData.username} required />
+                    <input type="text" name="username" autoComplete="username" onChange={handleChange} value={formData.username} required />
                 </label>
                 <label>
                     <div className='password-label'>Password
                         {view ? <VisibilityOffIcon onClick={() => handleViewPassword()} color="disabled" /> : <VisibilityIcon onClick={() => handleViewPassword()} color="disabled" />}
                     </div>
-                    <input type={view ? 'text' : 'password'} name="password" onChange={handleChange} value={formData.password} required />
+                    <input type={view ? 'text' : 'password'} name="password" autoComplete="current-password" onChange={handleChange} value={formData.password} required />
                 </label>
                 {signInError ?
                     <p className="password-error">{signInError}</p>
