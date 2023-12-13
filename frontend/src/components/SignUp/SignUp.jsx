@@ -51,7 +51,7 @@ export default function SignUp({ handleClick }) {
                     console.log(err)
                 })
         } else {
-            setSignUpError('Passwords do not match.')
+            setSignUpError('Sign Up Error: Your passwords do not match.')
             setFormData(initState)
         }
     };

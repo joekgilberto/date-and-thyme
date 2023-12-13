@@ -40,7 +40,10 @@
 }
 
 .password-error{
-    color: #ff0000;
+    background-color: #ffebeb;
+    color: #d24747;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
 .password-label{
