@@ -4,6 +4,8 @@ A full-stack Django/React web application that keeps track of when food in your 
 ## Deployment
 Find the app deployed on Netlify, here: [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4c84ce25-a2a3-4f68-bbd8-29ce67298d8e/deploy-status)](https://app.netlify.com/sites/date-and-thyme/deploys)
+
 ## Screenshots
 
 ### Home
