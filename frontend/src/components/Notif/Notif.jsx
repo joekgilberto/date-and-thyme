@@ -3,7 +3,7 @@ import './Notif.css'
 import {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import * as notifServices from '../../utilities/notif-services'
+import * as notifServices from '../../utilities/notif/notif-services'
 import { getUserToken } from '../../utilities/local-storage';
 
 import Alert from '@mui/material/Alert';

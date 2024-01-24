@@ -1,6 +1,6 @@
 // Imports notif api and tools
 import * as notifApi from './notif-api'
-import * as tools from './tools'
+import * as tools from '../tools'
 
 // gets all notifs
 export async function getAllNotifs() {

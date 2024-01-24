@@ -3,7 +3,7 @@ import './SignIn.css';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import * as authServices from '../../utilities/auth-services'
+import * as authServices from '../../utilities/auth/auth-services'
 import { setUserToken, setUsername } from '../../utilities/local-storage'
 
 import Button from '@mui/material/Button';

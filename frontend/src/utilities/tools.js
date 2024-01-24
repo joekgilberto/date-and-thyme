@@ -1,5 +1,5 @@
 // Imports notif-services
-import * as notifServices from '../utilities/notif-services'
+import * as notifServices from '../utilities/notif/notif-services'
 
 // Creates function to calaculate initial days left when a notification is generated
 export function initDaysLeft(foodItem) {

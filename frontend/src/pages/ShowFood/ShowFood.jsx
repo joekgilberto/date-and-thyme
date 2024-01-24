@@ -3,8 +3,8 @@ import './ShowFood.css';
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { FridgeContext } from "../../data";
-import * as foodItemServices from '../../utilities/food-services'
-import * as notifServices from '../../utilities/notif-services'
+import * as foodItemServices from '../../utilities/food/food-services'
+import * as notifServices from '../../utilities/notif/notif-services'
 import { getUserToken } from '../../utilities/local-storage';
 
 import EditFood from '../../components/EditFood/EditFood';

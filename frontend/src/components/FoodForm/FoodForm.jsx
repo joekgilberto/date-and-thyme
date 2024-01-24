@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { FridgeContext } from "../../data";
-import * as foodItemServices from '../../utilities/food-services'
+import * as foodItemServices from '../../utilities/food/food-services'
 import { getUserToken } from '../../utilities/local-storage';
 
 import Paper from '@mui/material/Paper';

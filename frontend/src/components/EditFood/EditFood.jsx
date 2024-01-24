@@ -2,7 +2,7 @@ import './EditFood.css'
 
 import { useState, useContext } from "react";
 import { FridgeContext } from "../../data";
-import * as foodItemServices from '../../utilities/food-services'
+import * as foodItemServices from '../../utilities/food/food-services'
 import { getUserToken } from '../../utilities/local-storage';
 
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
