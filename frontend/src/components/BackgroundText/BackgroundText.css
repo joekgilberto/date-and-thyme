@@ -1,9 +1,16 @@
-.BackgroundText{
-    padding-right: 60px;
-    animation: scroll 300s infinite linear;
+.BackgroundText {
+    text-align: justify;
     line-height: 1.75;
+    animation: scroll 300s infinite linear;
     color: #b4bbc1;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@media screen and (min-width: 700px) {
+    .BackgroundText {
+        padding-right: 60px;
+        text-align: start;
+    }
 }

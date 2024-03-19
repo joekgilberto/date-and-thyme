@@ -1,34 +1,44 @@
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header-logo{
+header .header-logo {
     display: flex;
     justify-self: center;
     align-items: center;
 }
 
-.header-spreader{
+header h4{
+    font-size: 24px !important;
+}
+
+header .header-spreader {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header-buttons{
+header .header-buttons {
     display: flex;
     align-items: center;
 }
 
-.header-spreader a{
+header .header-spreader a {
     color: #fff;
     text-decoration: none;
 }
 
-.thyme {
+header .thyme {
     width: 65px;
     height: auto;
     filter: invert(1)
-  }
+}
+
+@media screen and (min-width: 810px) {
+    header h4{
+        font-size: 34px !important;
+    }
+}

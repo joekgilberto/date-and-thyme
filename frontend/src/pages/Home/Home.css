@@ -1,22 +1,49 @@
 .Home{
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 }
 
-.Home>div{
-    width: 50%;
+.Home .background-text-comp,
+.Home .home-card{
     height: calc(100vh - 143px);
 }
 
-.background-text-comp{
+.Home .background-text-comp,
+.Home .home-card{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.Home .background-text-comp{
     overflow-y: hidden;
 }
 
-.home-card{
+.Home .home-card{
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
+    z-index: 1;
+}
+
+@media screen and (min-width: 700px) {
+    .Home{
+        grid-template-columns: 3.5fr 6.5fr;
+    }
+
+    .Home .background-text-comp{
+       grid-column: 1 / span 1;
+    }
+    
+    .Home .home-card{
+        grid-column: 2 / span 1;
+    }
+}
+
+@media screen and (min-width: 980px) {
+    .Home{
+        grid-template-columns: 1fr 1fr;
+    }
 }
