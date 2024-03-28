@@ -62,7 +62,7 @@ export default function Header() {
                   </Typography>
                 </Link>
               </div>
-              <div className='header-buttons'>
+              {/* <div className='header-buttons'>
                 {token ? (
                   <>
                     <Link to="/fridge">
@@ -90,7 +90,7 @@ export default function Header() {
                   </Link>
                 )}
 
-              </div>
+              </div> */}
             </div>
           </Toolbar>
         </AppBar>

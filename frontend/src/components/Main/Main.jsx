@@ -15,7 +15,8 @@ export default function Main() {
 
     return (
         <main>
-            <Routes>
+            <Home />
+            {/* <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/fridge" element={<PrivateRoute><Fridge /></PrivateRoute>} />
                 <Route path="/fridge/new" element={<PrivateRoute><NewFood /></PrivateRoute>} />
@@ -23,7 +24,7 @@ export default function Main() {
                 <Route path="/feed" element={<PrivateRoute><Notifications /></PrivateRoute>} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path={"/*"} element={<Error />} />
-            </Routes>
+            </Routes> */}
         </main>
     );
 }
