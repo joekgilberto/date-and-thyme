@@ -1,10 +1,8 @@
 # date and thyme
-A full-stack Django/React web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls deployed on Netlify, and a Django backend deployed on Heroku that interacts with a PostgreSQL database through the Django REST Framework.  Built by [Joe Gilberto](https://joekgilberto.com/).
+A full-stack Django/React web application that keeps track of when food in your fridge is best by.  Utilizes a React frontend with Material UI and Axios API calls, and a Django backend that interacts with a PostgreSQL database through the Django REST Framework.  Built by [Joe Gilberto](https://joekgilberto.com/).
 
 ## Deployment
-Find the app deployed on Netlify, here: [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4c84ce25-a2a3-4f68-bbd8-29ce67298d8e/deploy-status)](https://app.netlify.com/sites/date-and-thyme/deploys)
+Not currently deployed.
 
 ## Screenshots
 
@@ -129,8 +127,6 @@ npm start
 Now, you can go to http://localhost:3000/ in your browser (Google Chrome is reccommended for best performance) and browse the application.
 
 ## Current User Flow
-Firstly, visit [https://date-and-thyme.netlify.app/](https://date-and-thyme.netlify.app/)
-
 From the home page, the user can read up on the application.  The user can then sign in (through the button on the homepage or header) to access the application.  Once on the authorization page, a returning user can sign in and a new user can sign up.  If a returning user were to attempt to sign up with the same credentials, they would be automatically logged in.  After logging in, users can navigate the site throuhg the header's nav.  Through "Add Groceries" they can add food items and their expiration date to their fridge.  The user can check what items are in the fridge through the "Fridge" navigation link, and can click on those items to view further details, edit those details, or delete the grocery item.  Then, through the fridge icon in the navigation, users can see what notifications they have (reminding them when food has 5 or less days, warning them when food has 2 or less days, and alerting them when the food has expired).  The notifications will update every time the user opens the app.
 
 ## Future Features
